@@ -18,13 +18,9 @@
 </template>
 
 <script>
-import FileDetails from './FileDetails.vue'
 import crud from '@/config/crud'
 
 export default {
-  components: {
-    FileDetails,
-  },
   props: {
     value: {},
     textMode: {

@@ -17,7 +17,7 @@
         </v-card-title>
       </slot>
       <v-form v-model="details.formValid">
-        <v-card-text class="details-list">
+        <v-card-text style="padding:25px !important;" class="details-list">
           <slot name="over-fields" />
           <div
             v-for="(field, i) in fields"
@@ -178,9 +178,9 @@ export default {
         rField.value = this.details.item[field.column]
         if (typeof rField.value !== 'undefined') {
           const fieldValue = this.details.item[field.column]
-          if (field.type === 'select') {
+          if (field.type === 'select' || field.type === 'multiselect') {
             const defaultVal = field.list.default || field.required ? 1 : undefined
-            rField.value = field.stringId ? fieldValue : parseInt(fieldValue) || defaultVal
+            rField.value = fieldValue || defaultVal
           } else if (field.type === 'date') {
             rField.value = (fieldValue || '').substring(0, 10)
           } else if (field.type === 'checkbox') {

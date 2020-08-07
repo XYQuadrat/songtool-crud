@@ -21,6 +21,10 @@
       <v-autocomplete v-else-if="field.type == 'select'" :items="field.list.data" v-model="field.value" :item-text="field.list.text" :item-value="field.list.value"
         :label="field.text" menu-props="bottom" @change="update(field)"></v-autocomplete>
 
+      <!-- multiselect -->
+      <v-autocomplete v-else-if="field.type == 'multiselect'" :items="field.list.data" v-model="field.value" :item-text="field.list.text" :item-value="field.list.value"
+        :label="field.text" menu-props="bottom" @change="update(field)"></v-autocomplete>
+
       <!-- checkbox -->
       <v-checkbox color="blue" v-else-if="field.type == 'checkbox'" :label="field.text" v-model="field.value" @change="update(field)"></v-checkbox>
     </v-flex>
@@ -71,7 +75,14 @@ export default {
             field.list.data = selectItems
           }
         })
-      }
+      } else if (field.type === 'multiselect') {
+        Vue.http.get(field.url).then((response) => {
+          const items = response.body
+          field.list.data = []
+          let selectItems
+          selectItems = items.join(', ')
+          field.list.data = selectItems
+        })}
     }
   },
   computed: {

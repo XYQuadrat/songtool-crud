@@ -110,14 +110,6 @@ const mutations = {
     state.itemElements.dictionaryKeyName = obj.dictionaryKeyName
     state.itemElements.show = true
   },
-  openImageContainer (state, item) {
-    state.imageContainer.item = item
-    state.imageContainer.show = true
-  },
-  closeImageContainer (state) {
-    state.imageContainer.show = false
-    state.imageContainer.item = {}
-  },
   // refresh table
   refreshTable (state, status) {
     state.isItemsViewRefreshed = status

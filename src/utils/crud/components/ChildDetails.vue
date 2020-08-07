@@ -157,6 +157,9 @@ export default {
           if (field.type === 'select') {
             const defaultVal = field.list.default || field.required ? 1 : undefined
             rField.value = field.stringId ? this.details.item[field.column] : parseInt(this.details.item[field.column]) || defaultVal
+          } else if (field.type === 'multiselect') {
+            console.log(this.details.item[field.column].join(', '))
+            rField.value = this.details.item[field.column].join(', ')
           } else if (field.type === 'date') {
             rField.value = (this.details.item[field.column] || '').substring(0, 10)
           } else if (field.type === 'checkbox') {
