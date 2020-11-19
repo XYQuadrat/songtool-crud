@@ -12,9 +12,7 @@
       >
         <v-card-title
           class="headline"
-        >
-          {{ details.action == 'multiedit' ? $t('global.details.multipleUpdateTitle') : title }}
-        </v-card-title>
+        ></v-card-title>
       </slot>
       <v-form v-model="details.formValid">
         <v-card-text style="padding:25px !important;" class="details-list">
@@ -85,12 +83,6 @@
             text
             @click="update()"
           >{{ $t('global.details.buttons.modify') }}</v-btn>
-          <v-btn
-            v-else-if="details.action == 'multiedit'"
-            color="orange"
-            text
-            @click="updateSelected()"
-          >{{ $t('global.details.buttons.modifySelected') }}</v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
@@ -257,21 +249,6 @@ export default {
       ]).then((response) => {
         this.close()
       })
-    },
-    updateSelected () {
-      const filteredFields = this.fields.filter(field => field.updateColumn)
-      const keyValuePairs = {}
-      for (const field of filteredFields) {
-        keyValuePairs[field.column] = field.value
-      }
-      this.mulitipleItemsUpdate([
-        {
-          ids: this.selectedIds,
-          request: keyValuePairs,
-        },
-        this.$t('global.alerts.updated'),
-        this.$t('global.alerts.updateError'),
-      ])
     },
   },
 }

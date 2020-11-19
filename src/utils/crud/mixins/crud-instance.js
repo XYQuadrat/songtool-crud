@@ -72,8 +72,6 @@ export default {
       'storeItem',
       'deleteItem',
       'getItemElements',
-      'mulitipleItemsUpdate',
-      'mulitipleItemsDelete',
       'getItemDetails',
       'runItemsViewRefreshing',
     ]),
@@ -115,71 +113,6 @@ export default {
       if (confirm(this.$t('global.alerts.confirm'))) {
         this.deleteItem([
           id,
-          this.$t('global.alerts.deleted'),
-          this.$t('global.alerts.deleteError'),
-        ])
-      }
-    },
-    checkSelected () {
-      if (this.selected.length === 0) {
-        this.openAlertBox([
-          'alertError',
-          this.$t('global.datatable.noItemsSelected'),
-        ])
-        return false
-      }
-      if (confirm(this.$t('global.datatable.confirm'))) {
-        return true
-      }
-      return false
-    },
-    editSelected () {
-      if (this.selected.length === 0) {
-        this.openAlertBox([
-          'alertError',
-          this.$t('global.datatable.noItemsSelected'),
-        ])
-        return false
-      }
-
-      this.setSelectedIds(this.selected)
-      this.resetItem()
-      this.multipleEditDialog()
-    },
-    suspendSelected () {
-      if (this.checkSelected()) {
-        this.mulitipleItemsUpdate([
-          {
-            ids: this.selectedIds,
-            request: {
-              active: 0,
-            },
-          },
-          this.$t('global.alerts.suspended'),
-          this.$t('global.alerts.suspendError'),
-        ])
-      }
-    },
-    restoreSelected () {
-      if (this.checkSelected()) {
-        this.mulitipleItemsUpdate([
-          {
-            ids: this.selectedIds,
-            request: {
-              active: 1,
-            },
-          },
-          this.$t('global.alerts.restored'),
-          this.$t('global.alerts.restoreError'),
-        ])
-      }
-    },
-    destroySelected () {
-      if (this.checkSelected()) {
-        this.mulitipleItemsDelete([
-          {
-            ids: this.selectedIds,
-          },
           this.$t('global.alerts.deleted'),
           this.$t('global.alerts.deleteError'),
         ])

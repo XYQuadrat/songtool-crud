@@ -115,13 +115,11 @@ import {
   mapActions,
 } from 'vuex'
 import ItemDetails from './ItemDetails.vue'
-import ItemElements from './ItemElements.vue'
 import crud from '@/config/crud'
 
 export default {
   components: {
     ItemDetails,
-    ItemElements,
   },
   props: {
     prefix: {
@@ -237,18 +235,6 @@ export default {
     refreshButton: {
       type: Boolean,
       default: crud.refreshButton === undefined ? true : crud.refreshButton,
-    },
-    selectManyMode: {
-      type: Boolean,
-      default: crud.selectManyMode === undefined ? true : crud.selectManyMode,
-    },
-    updateManyMode: {
-      type: Boolean,
-      default: crud.updateManyMode === undefined ? true : crud.updateManyMode,
-    },
-    removeManyMode: {
-      type: Boolean,
-      default: crud.removeManyMode === undefined ? true : crud.removeManyMode,
     },
     itemDetailsWidth: {
       default: 600,

@@ -5,21 +5,10 @@
     <crud-button
       v-if="editButton && editMode"
       small
-      color="orange"
+      color="#FF8A65aa"
       icon="edit"
       :tooltip="$t('global.datatable.buttons.edit')"
       @clicked="edit(item.meta.id)"
-    ></crud-button>
-    <!-- custom buttons -->
-    <crud-button
-      v-for="(customButton) in customButtons"
-      :key="customButton.name"
-      :disabled="!item.meta.buttons[customButton.name]"
-      small
-      :color="customButton.color"
-      :icon="customButton.icon"
-      :tooltip="customButton.text"
-      @clicked="custom(customButton.name, item)"
     ></crud-button>
     <!-- buttons for open modal with item elements -->
     <crud-button
@@ -31,27 +20,6 @@
       :tooltip="button.buttonText"
       @clicked="editItemElements(key, item.meta.id)"
     ></crud-button>
-    <!-- suspend/restore record (if soft deletes are enabled) -->
-    <template v-if="['soft', 'both'].includes(deleteMode)">
-      <!-- suspend button -->
-      <crud-button
-        v-if="item.meta.active == '1'"
-        small
-        color="red"
-        icon="undo"
-        :tooltip="$t('global.datatable.buttons.suspend')"
-        @clicked="suspend(item.meta.id)"
-      ></crud-button>
-      <!-- restore button -->
-      <crud-button
-        v-else
-        small
-        color="green"
-        icon="redo"
-        :tooltip="$t('global.datatable.buttons.restore')"
-        @clicked="restore(item.meta.id)"
-      ></crud-button>
-    </template>
     <!-- hard delete -->
     <crud-button
       v-if="['hard', 'both'].includes(deleteMode)"

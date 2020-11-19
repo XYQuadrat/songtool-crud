@@ -11,10 +11,6 @@
     <span v-else-if="textMode === 'text'">
       {{ value }}
     </span>
-    <!-- file -->
-    <span v-else-if="textMode === 'file'">
-      <file-details :fieldInfo="fieldInfoToJSON(value)"></file-details>
-    </span>
   </span>
 </template>
 
@@ -32,7 +28,7 @@ export default {
   filters: {
     cropped (value) {
       let rvalue
-      const maxLength = crud.maxLength || 40
+      const maxLength = crud.maxLength || 35
       if (typeof value === 'string' || value instanceof String) {
         rvalue = value.length <= maxLength ? value : `${value.substring(0, maxLength - 3)}...`
       } else if (Array.isArray(value) || value instanceof Array) {

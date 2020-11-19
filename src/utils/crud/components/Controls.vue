@@ -23,34 +23,6 @@
         :tooltip="$t('global.datatable.add')"
       />
 
-      <!-- multiple edit -->
-      <crud-button
-        v-if="editMode && selectManyMode && updateManyMode"
-        large
-        color="orange"
-        @clicked="editSelected()"
-        icon="edit"
-        :tooltip="$t('global.datatable.buttons.editSelected')"
-      />
-
-      <!-- suspend/restore record (if soft deletes are enabled) -->
-      <template v-if="['soft', 'both'].includes(deleteMode) && selectManyMode && updateManyMode">
-        <crud-button
-          large
-          color="red"
-          @clicked="suspendSelected()"
-          icon="undo"
-          :tooltip="$t('global.datatable.buttons.suspendSelected')"
-        />
-        <crud-button
-          large
-          color="green"
-          @clicked="restoreSelected()"
-          icon="redo"
-          :tooltip="$t('global.datatable.buttons.restoreSelected')"
-        />
-      </template>
-
       <!-- hard delete -->
       <crud-button
         v-if="['hard', 'both'].includes(deleteMode) && selectManyMode && removeManyMode"
@@ -94,23 +66,6 @@
           @input="updateSearch"
         ></v-text-field>
       </span>
-
-      <!-- Select statuses (active/inactive) -->
-      <template v-if="['soft', 'both', 'filter'].includes(deleteMode)">
-        <span class="crud-controls__select-statuses">
-          <v-autocomplete
-            v-model="selectedStatuses"
-            :items="statuses"
-            :label="$t('global.datatable.status.title')"
-            item-text="text"
-            item-value="value"
-            single-line
-            multiple
-            chips
-            @change="updateSelectedStatuses"
-          ></v-autocomplete>
-        </span>
-      </template>
 
       <!-- clear filters -->
       <crud-button
@@ -215,18 +170,6 @@ export default {
     },
     filter () {
       this.$emit('filter')
-    },
-    editSelected () {
-      this.$emit('editSelected')
-    },
-    suspendSelected () {
-      this.$emit('suspendSelected')
-    },
-    restoreSelected () {
-      this.$emit('restoreSelected')
-    },
-    destroySelected () {
-      this.$emit('destroySelected')
     },
     refreshItemsView () {
       this.$emit('refreshItemsView')
