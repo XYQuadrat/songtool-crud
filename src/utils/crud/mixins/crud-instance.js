@@ -52,9 +52,6 @@ export default {
         this.activeColumnName
       )
     },
-    excelName () {
-      return this.$t(`global.routes.${this.page}`)
-    },
   },
   methods: {
     ...mapMutations('crud', [

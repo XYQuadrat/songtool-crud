@@ -1,4 +1,4 @@
 export default {
-  title: 'Songtool Wyssachen',
+  title: 'Songtool',
   iconfont: 'md',
 }

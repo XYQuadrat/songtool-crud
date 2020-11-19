@@ -12,11 +12,19 @@
 
 export default {
   name: 'TextareaField',
-  props: [
-    'value',
-    'field',
-    'rules',
-  ],
+  props: {
+    value: {
+      type: String,
+      default: '',
+    },
+    rules: {
+      type: Array,
+      default: () => [],
+    },
+    field: {
+      type: Object,
+    },
+  },
   data () {
     return {
       text: undefined,

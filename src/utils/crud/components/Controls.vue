@@ -70,45 +70,14 @@
     <div>
 
       <!-- Search by fields -->
-      <v-menu
+      <crud-button
         v-if="fieldFilters"
-        :close-on-content-click="false"
-        max-height="50vh"
-        offset-y
-      >
-        <template v-slot:activator="{ on }">
-          <v-btn
-            large
-            color="grey"
-            icon
-            v-on="on"
-          >
-            <v-icon>filter_list</v-icon>
-          </v-btn>
-        </template>
-        <v-list style="overflow-y:false;">
-          <v-list-item
-            v-for="(item, index) in columnFilters"
-            :key="index"
-          >
-            <v-autocomplete
-              :items="filterModes"
-              v-model="item.mode"
-              item-text="text"
-              item-value="name"
-              :label="$t('global.datatable.filterModes.label')"
-              hide-details
-              @input="updateColumnFilterMode($event, index)"
-            ></v-autocomplete>
-            <v-text-field
-              v-model="item.value"
-              hide-details
-              :label="item.text"
-              @input="updateColumnFilterValue($event, index)"
-            ></v-text-field>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+        x-large
+        color="light-blue lighten-2"
+        @clicked="filter()"
+        icon="filter_list"
+        :tooltip="$t('global.datatable.searchByColumns')"
+      />
 
       <!-- Search in table -->
       <span
@@ -171,17 +140,6 @@
         :tooltip="$t('global.datatable.buttons.refreshTable')"
       />
 
-      <!-- Clear filters -->
-      <crud-button
-        v-if="exportButton"
-        :loading="excelLoading"
-        :tooltip="$t('global.datatable.buttons.copyToExcel')"
-        color="green darken-4"
-        icon="save_alt"
-        large
-        @clicked="exportToExcel"
-      />
-
       <!-- slot -->
       <slot name="right"></slot>
 
@@ -192,6 +150,7 @@
 
 <script>
 import CrudButton from './Button.vue'
+import _ from 'lodash'
 
 export default {
   name: 'Controls',
@@ -209,7 +168,6 @@ export default {
     'fieldFilters',
     'refreshButton',
     'exportButton',
-    'excelLoading',
     'initialSearch',
     'initialSelectedStatuses',
     'initialColumnFilters',
@@ -255,6 +213,9 @@ export default {
     create () {
       this.$emit('create')
     },
+    filter () {
+      this.$emit('filter')
+    },
     editSelected () {
       this.$emit('editSelected')
     },
@@ -270,18 +231,18 @@ export default {
     refreshItemsView () {
       this.$emit('refreshItemsView')
     },
-    updateSearch () {
+    updateSearch: _.debounce(function () {
       this.$emit('updateSearch', this.search)
-    },
+    }, 250),
     updateSelectedStatuses () {
       this.$emit('updateSelectedStatuses', this.selectedStatuses)
     },
     updateColumnFilterMode (event, index) {
       this.$emit('updateColumnFilterMode', event, index)
     },
-    updateColumnFilterValue (event, index) {
+    updateColumnFilterValue: _.debounce(function (event, index) {
       this.$emit('updateColumnFilterValue', event, index)
-    },
+    }, 250),
     updateColumnFilters () {
       this.$emit('updateColumnFilters', this.columnFilters)
     },
@@ -296,9 +257,6 @@ export default {
       }
       this.updateColumnFilters()
       this.$emit('clearFilters')
-    },
-    exportToExcel () {
-      this.$emit('exportToExcel')
     },
   },
   created () {

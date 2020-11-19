@@ -3,7 +3,8 @@
     <!-- html -->
     <span v-if="textMode === 'html'" v-html="value"></span>
     <!-- cropped text -->
-    <span v-else-if="textMode === 'cropped'" class="cell-nowrap">
+    <!-- <span v-else-if="textMode === 'cropped'" class="cell-nowrap"> -->
+    <span v-else-if="textMode === 'cropped'">
       {{ value | cropped }}
     </span>
     <!-- text -->
@@ -34,6 +35,8 @@ export default {
       const maxLength = crud.maxLength || 40
       if (typeof value === 'string' || value instanceof String) {
         rvalue = value.length <= maxLength ? value : `${value.substring(0, maxLength - 3)}...`
+      } else if (Array.isArray(value) || value instanceof Array) {
+        rvalue = value.join(', ')
       } else {
         rvalue = value
       }

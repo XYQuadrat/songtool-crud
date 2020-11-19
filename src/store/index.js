@@ -8,14 +8,10 @@ import mutations from './mutations'
 import actions from './actions'
 // crud
 import crud from '@/utils/crud/store/'
-// auth
-import auth from '@/utils/auth/store/'
-// app
-import app from '@/utils/app/store/'
 
 import customModules from '@/config/store-modules'
 
-const mainModules = { crud, auth, app }
+const mainModules = { crud }
 const modules = Object.assign(customModules, mainModules)
 
 Vue.use(Vuex)

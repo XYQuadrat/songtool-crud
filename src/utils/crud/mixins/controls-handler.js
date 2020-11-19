@@ -4,7 +4,6 @@ export default {
       search: '',
       selectedStatuses: [1],
       columnFilters: [],
-      excelLoading: false,
     }
   },
   methods: {

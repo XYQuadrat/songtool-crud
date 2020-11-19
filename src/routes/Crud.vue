@@ -1,6 +1,6 @@
 <template>
   <div style="margin:30px 0px;">
-    <h1 style="text-align:center">SongTool Wyssachen</h1>
+    <h1 style="text-align:center">SongTool</h1>
     <crud
       :prefix="prefix"
       :path="path"
@@ -25,7 +25,7 @@
 
 <script>
 import Crud from '@/utils/crud/components/Crud.vue'
-import AlertBox from '@/utils/app/components/AlertBox.vue'
+import AlertBox from '@/utils/crud/components/AlertBox.vue'
 
 export default {
   data () {
@@ -74,15 +74,33 @@ export default {
         {
           type: 'multiselect',
           list: {
+            value: 'included_in',
+            text: 'label',
+            data: [
+              { name: 'BMH', label: 'BMH' },
+              { name: 'KG/CG', label: 'KG/CG' },
+              { name: 'bibl.', label: 'bibl.' },
+              { name: 'Dialekt', label: 'Dialekt' },
+              { name: 'Kanon', label: 'Kanon' },
+            ],
+          },
+          required: false,
+          column: 'included_in',
+          text: this.$t('fields.included_in'),
+          name: 'included_in',
+        },
+        {
+          type: 'multiselect',
+          list: {
             value: 'kasualien',
             text: 'label',
             data: [
-              { name: 'Egal', label: 'Egal' },
               { name: 'Taufe', label: 'Taufe' },
               { name: 'Trauung', label: 'Trauung' },
               { name: 'Trauerfeier', label: 'Trauerfeier' },
             ],
           },
+          required: false,
           stringId: true,
           column: 'kasualien',
           text: this.$t('fields.kasualien'),
@@ -91,46 +109,9 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'kirchenjahr',
-            text: 'label',
-            data: [
-              { name: 'Egal', label: 'Egal' },
-              { name: 'Advent', label: 'Advent' },
-              { name: 'Weihnachten', label: 'Weihnachten' },
-              { name: 'Jahreswechsel', label: 'Jahreswechsel' },
-              { name: 'Passion', label: 'Passion' },
-              { name: 'Ostern', label: 'Ostern' },
-              { name: 'Himmelfahrt', label: 'Himmelfahrt' },
-              { name: 'Dank-, Buss- und Bettag', label: 'Dank-, Buss- und Bettag' },
-              { name: 'Schöpfung', label: 'Schöpfung' },
-            ],
-          },
-          column: 'kirchenjahr',
-          text: this.$t('fields.kirchenjahr'),
-          name: 'kirchenjahr',
-        },
-        {
-          type: 'multiselect',
-          list: {
-            value: 'included_in',
-            text: 'label',
-            data: [
-              { name: 'Blasmusikheft', label: 'Blasmusikheft' },
-              { name: 'Ökumenisch', label: 'Ökumenisch' },
-              { name: 'bibl. Gesang', label: 'bibl. Gesang' },
-            ],
-          },
-          column: 'included_in',
-          text: this.$t('fields.included_in'),
-          name: 'included_in',
-        },
-        {
-          type: 'multiselect',
-          list: {
             value: 'liturgie',
             text: 'label',
             data: [
-              { name: 'Egal', label: 'Egal' },
               { name: 'Eröffnung', label: 'Eröffnung' },
               { name: 'Anrufung', label: 'Anrufung' },
               { name: 'Anbetung', label: 'Anbetung' },
@@ -141,9 +122,32 @@ export default {
               { name: 'Sendung/Segen', label: 'Sendung/Segen' },
             ],
           },
+          required: false,
           column: 'liturgie',
           text: this.$t('fields.liturgie'),
           name: 'liturgie',
+        },
+        {
+          type: 'multiselect',
+          list: {
+            value: 'kirchenjahr',
+            text: 'label',
+            data: [
+              { name: 'Advent', label: 'Advent' },
+              { name: 'Weihnachten', label: 'Weihnachten' },
+              { name: 'Jahreswechsel', label: 'Jahreswechsel' },
+              { name: 'Passion', label: 'Passion' },
+              { name: 'Ostern', label: 'Ostern' },
+              { name: 'Himmelfahrt', label: 'Himmelfahrt' },
+              { name: 'Pfingsten', label: 'Pfingsten' },
+              { name: 'Dank-, Buss- und Bettag', label: 'Dank-, Buss- und Bettag' },
+              { name: 'Schöpfung', label: 'Schöpfung' },
+            ],
+          },
+          required: false,
+          column: 'kirchenjahr',
+          text: this.$t('fields.kirchenjahr'),
+          name: 'kirchenjahr',
         },
         {
           type: 'multiselect',
@@ -153,10 +157,11 @@ export default {
             data: [
               { name: 'Morgen', label: 'Morgen' },
               { name: 'Mittag', label: 'Mittag' },
-              { name: 'Abend und Nacht', label: 'Abend und Nacht' },
+              { name: 'Abend und Nacht', label: 'Abend/Nacht' },
               { name: 'Bei Tisch', label: 'Bei Tisch' },
             ],
           },
+          required: false,
           column: 'tageskreis',
           text: this.$t('fields.tageskreis'),
           name: 'tageskreis',
@@ -177,9 +182,33 @@ export default {
               { name: 'Im Angesicht des Todes', label: 'Im Angesicht des Todes' },
             ],
           },
+          required: false,
           column: 'lebenskreis',
           text: this.$t('fields.lebenskreis'),
           name: 'lebenskreis',
+        },
+        {
+          type: 'multiselect',
+          list: {
+            value: 'gd_in_der_welt',
+            text: 'label',
+            data: [
+              { name: 'weltw. Gemeinschaft', label: 'weltw. Gemeinschaft' },
+              { name: 'Leben/Handeln aus Glauben', label: 'Leben/Handeln aus Glauben' },
+              { name: 'Reich Gottes', label: 'Reich Gottes' },
+            ],
+          },
+          required: false,
+          column: 'gd_in_der_welt',
+          text: this.$t('fields.gd_in_der_welt'),
+          name: 'gd_in_der_welt',
+        },
+        {
+          type: 'textarea',
+          required: false,
+          column: 'liedtext',
+          text: this.$t('fields.liedtext'),
+          name: 'liedtext',
         },
       ]
     },
@@ -193,15 +222,17 @@ export default {
       en: {
         detailsTitle: 'Lied',
         fields: {
-          songnumber: 'Liednummer',
+          songnumber: 'Nr.',
           title: 'Liedtitel',
-          difficulty: 'Anspruchsgrad',
+          difficulty: 'Level',
           kasualien: 'Kasualien',
           kirchenjahr: 'Kirchenjahr',
           included_in: 'Enthalten in',
           liturgie: 'Liturgie',
           tageskreis: 'Tageskreis',
           lebenskreis: 'Lebenskreis',
+          liedtext: 'Liedtext',
+          gd_in_der_welt: 'GD in der Welt',
         },
       },
     },

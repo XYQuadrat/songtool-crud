@@ -11,6 +11,9 @@ const mutations = {
   setPaths (state, paths) {
     state.paths = paths
   },
+  setPage (state, value) {
+    state.page = value
+  },
   // items view type
   setItemsViewType (state, type) {
     state.itemsViewType = type
@@ -183,6 +186,9 @@ const mutations = {
     const child = state.childItems[childItemName]
     child.details.item = data
     Vue.set(state.childItems, childItemName, child)
+  },
+  createFilterDialog (state) {
+    state.details.show = true
   },
 }
 

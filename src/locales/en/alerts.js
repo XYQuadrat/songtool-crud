@@ -1,8 +1,8 @@
 export default {
   updated: 'Aktualisiert',
   updateError: 'Fehler! Update nicht erfolgreich',
-  stored: 'Stored',
-  storeError: 'Fehler! Store nicht erfolgreich',
+  stored: 'Gespeichert',
+  storeError: 'Fehler! Speichern nicht erfolgreich',
   suspended: 'Suspendiert',
   suspendError: 'Fehler! Suspendieren nicht erfolgreich',
   restored: 'Wiederhergestellt',

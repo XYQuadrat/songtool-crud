@@ -86,7 +86,7 @@ export default {
         })
         if (!required) {
           const nullElement = {}
-          nullElement[this.field.list.value] = ''
+          nullElement[this.field.list.value] = ['']
           nullElement[this.field.list.text] = '-'
           this.items = [
             nullElement,

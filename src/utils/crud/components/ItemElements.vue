@@ -68,6 +68,8 @@
         show-select
         multi-sort
         dense
+        fixed-header
+        height="100%"
       >
         <template
           v-for="(header, i) in headers"
@@ -149,8 +151,8 @@ export default {
       tmp: '',
       search: '',
       pagination: {
-        sortBy: ['added'],
-        sorDesc: [true],
+        sortBy: ['songnumber'],
+        sorDesc: [false],
       },
       selectedStatuses: [
         1,

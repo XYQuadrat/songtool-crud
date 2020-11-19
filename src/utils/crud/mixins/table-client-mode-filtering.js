@@ -2,72 +2,67 @@
 export default {
   computed: {
     filteredItems () {
-      let items = [
-        'soft',
-        'both',
-      ].includes(this.deleteMode)
-        ? this.items.filter(item => this.selectedStatuses.includes(parseInt(item.meta.active)))
-        : this.items
+      let items = this.items
 
-      const { columnFilters } = this
+      var { columnFilters } = this
+      columnFilters = columnFilters.filter(e => !!e.value || (e instanceof Array && e.length > 0))
+
       items = items.filter((item) => {
-        let found = true
         for (let i = 0; i < columnFilters.length; i++) {
-          if (columnFilters[i].value !== '') {
-            found = false
-            const colName = columnFilters[i].name
-            let field = item[colName]
+          let matchesFilter = false
+          const colName = columnFilters[i].name
+          let field = item[colName]
+          const keys = columnFilters[i].value.split(',').map(item => item.trim().toLowerCase())
+          for (var j = 0; j < keys.length; ++j) {
             if (typeof field === 'string' || field instanceof String || typeof field === 'number') {
               field = field.toString().toLowerCase()
-              switch (columnFilters[i].mode) {
-                case 'like':
-                  if (field.includes(columnFilters[i].value)) {
-                    found = true
-                  }
-                  break
-                case 'equals':
-                  if (field === columnFilters[i].value) {
-                    found = true
-                  }
-                  break
-                case 'list':
-                  const tmpList = columnFilters[i].value.split(';')
-                  if (tmpList.includes(field)) {
-                    found = true
-                  }
-                  break
-                default:
-                  break
+              if (field.includes(keys[j])) {
+                matchesFilter = true
+              }
+            } else if (field instanceof Array || Array.isArray(field)) {
+              field = field.join(' ').toLowerCase()
+              if (field.includes(keys[j])) {
+                matchesFilter = true
+              }
+            }
+          }
+          if (!matchesFilter) return false
+        }
+        return true
+      })
+
+      if (this.search !== '') {
+        const phrases = this.search.toLowerCase().split(' ')
+        items = items.filter((item) => {
+          let found = true
+          for (let i = 0; i < phrases.length; i++) {
+            found = false
+            for (const key in item) {
+              let field = item[key]
+              if (
+                typeof field === 'string' ||
+                field instanceof String ||
+                typeof field === 'number'
+              ) {
+                field = field.toString().toLowerCase()
+                if (field.includes(phrases[i])) {
+                  return true
+                }
+              } else if (
+                field instanceof Array ||
+                Array.isArray(field)
+              ) {
+                field = field.join(' ').toLowerCase()
+                if (field.includes(phrases[i])) {
+                  return true
+                }
               }
             }
             if (!found) break
           }
-        }
-        return found
-      })
-
-      const phrases = this.search === '' ? [] : this.search.toLowerCase().split(' ')
-      items = items.filter((item) => {
-        let found = true
-        for (let i = 0; i < phrases.length; i++) {
-          found = false
-          for (const key in item) {
-            let field = item[key]
-            if (
-              typeof field === 'string' ||
-              field instanceof String ||
-              typeof field === 'number'
-            ) {
-              field = field.toString().toLowerCase()
-              if (field.includes(phrases[i])) {
-                found = true
-              }
-            }
-          }
-          if (!found) break
-        }
-        return found
-      })
+          return found
+        })
+      }
 
       return items
     },
@@ -75,27 +70,6 @@ export default {
   methods: {
     getItemIndex (id) {
       return this.filteredItems.map((item) => item.meta.id).indexOf(id)
-    },
-    exportToExcel () {
-      this.excelLoading = true
-      const headers = this.cleanHeaders.map(header => header.text)
-      const data = this.filteredItems.map((item) => {
-        const row = []
-        for (const header of this.cleanHeaders) {
-          row.push(item[header.value])
-        }
-        return row
-      })
-      import('../vendor/Export2Excel').then((excel) => {
-        this.excelLoading = false
-        excel.export_json_to_excel({
-          header: headers,
-          data,
-          filename: this.excelName,
-          autoWidth: true,
-          bookType: 'xlsx',
-        })
-      })
     },
     startSearching () {},
   },

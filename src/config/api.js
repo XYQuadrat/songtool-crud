@@ -1,5 +1,5 @@
 export default {
-  url: 'https://xyquadrat.ch',
+  url: 'https://people.xyquadrat.ch',
   path: {
     prefix: 'api',
   },

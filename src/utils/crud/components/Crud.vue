@@ -87,7 +87,7 @@
 
       </item-details>
       <item-elements></item-elements>
-      <image-container></image-container>
+      <!-- <image-container></image-container> -->
     </div>
     <div class="details-loader-container">
       <v-layout
@@ -302,11 +302,11 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('app', ['setPage']),
     ...mapMutations('crud', [
       'setPrefix',
       'setPath',
       'setPaths',
+      'setPage',
       'setCreationMode',
       'setItemsViewType',
     ]),

@@ -147,8 +147,15 @@ export default {
     itemData () {
       const result = {}
       for (const field of this.fields) {
-        result[field.column] = field.value !== undefined ? field.value : null
+        if (field.type === 'multiselect') {
+          result[field.column] = field.value !== undefined ? field.value : []
+        } else if (field.type === 'textarea') {
+          result[field.column] = field.value !== undefined ? field.value : ''
+        } else {
+          result[field.column] = field.value !== undefined ? field.value : null
+        }
       }
+      console.log(result)
       return result
     },
     detailsShow () {
@@ -179,7 +186,7 @@ export default {
         if (typeof rField.value !== 'undefined') {
           const fieldValue = this.details.item[field.column]
           if (field.type === 'select' || field.type === 'multiselect') {
-            const defaultVal = field.list.default || field.required ? 1 : undefined
+            const defaultVal = field.list.default || field.required ? 1 : []
             rField.value = fieldValue || defaultVal
           } else if (field.type === 'date') {
             rField.value = (fieldValue || '').substring(0, 10)

@@ -11,7 +11,6 @@
       :field-filters="fieldFilters"
       :refresh-button="refreshButton"
       :export-button="exportButton"
-      :excel-loading="excelLoading"
       :initialSearch="search"
       :initialSelectedStatuses="selectedStatuses"
       :initialColumnFilters="columnFilters"
@@ -26,7 +25,6 @@
       @updateSearch="updateSearch"
       @updateSelectedStatuses="updateSelectedStatuses"
       @clearFilters="clearFilters"
-      @exportToExcel="exportToExcel"
     >
     </controls>
     <!-- Table -->
@@ -42,6 +40,7 @@
       :footer-props="footerProps"
       :items-per-page="20"
       :loading="loading"
+      sort-by="songnumber"
       light
       multi-sort
       dense

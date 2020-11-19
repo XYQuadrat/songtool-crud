@@ -6,49 +6,6 @@ function parseIntIfNumber (str) {
   return !/\D/.test(str) ? parseInt(str) : str
 }
 
-function download (path, filename) {
-  const a = document.createElement('a')
-  a.href = `${path}/${filename}`
-  a.download = true
-  a.target = '_blank'
-  a.click()
-}
-
-function humanFileSize (bytes, si) {
-  const thresh = si ? 1000 : 1024
-  if (Math.abs(bytes) < thresh) {
-    return `${bytes} B`
-  }
-  const units = si
-    ? [
-      'kB',
-      'MB',
-      'GB',
-      'TB',
-      'PB',
-      'EB',
-      'ZB',
-      'YB',
-    ]
-    // : ['KiB','MiB','GiB','TiB','PiB','EiB','ZiB','YiB'];
-    : [
-      'KB',
-      'MB',
-      'GB',
-      'TB',
-      'PB',
-      'EB',
-      'ZB',
-      'YB',
-    ]
-  let u = -1
-  do {
-    bytes /= thresh
-    ++u
-  } while (Math.abs(bytes) >= thresh && u < units.length - 1)
-  return `${bytes.toFixed(1)} ${units[u]}`
-}
-
 function getItemsList (obj, fields, meta, primaryKey, customButtons, activeColumnName) {
   const rObj = {}
   rObj.meta = {
@@ -129,7 +86,5 @@ function getItemsList (obj, fields, meta, primaryKey, customButtons, activeColum
 export {
   fieldModifiers,
   parseIntIfNumber,
-  download,
-  humanFileSize,
   getItemsList,
 }

@@ -5,7 +5,6 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import './plugins/http'
 import './plugins/ie'
-import './plugins/custom/'
 import App from './App.vue'
 
 Vue.http.interceptors.push((request, next) => {
