@@ -3,7 +3,6 @@
     <!-- html -->
     <span v-if="textMode === 'html'" v-html="value"></span>
     <!-- cropped text -->
-    <!-- <span v-else-if="textMode === 'cropped'" class="cell-nowrap"> -->
     <span v-else-if="textMode === 'cropped'">
       {{ value | cropped }}
     </span>

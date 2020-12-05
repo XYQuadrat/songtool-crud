@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="details.show"
+    v-model="filter.show"
     :max-width="width"
     persistent
     no-click-animation
@@ -12,9 +12,9 @@
       >
         <v-card-title
           class="headline"
-        >Details</v-card-title>
+        >Filtern</v-card-title>
       </slot>
-      <v-form v-model="details.formValid">
+      <v-form>
         <v-card-text style="padding:25px !important;" class="details-list">
           <slot name="over-fields" />
           <div
@@ -71,18 +71,10 @@
           <v-btn color="black" text @click.native="close()">{{ $t('global.details.buttons.close') }}</v-btn>
           <v-btn
             :disabled="!details.formValid"
-            v-if="details.action == 'create'"
             color="green"
             text
-            @click="store()"
-          >{{ $t('global.details.buttons.create') }}</v-btn>
-          <v-btn
-            :disabled="!details.formValid"
-            v-else-if="details.action == 'edit'"
-            color="orange"
-            text
-            @click="update()"
-          >{{ $t('global.details.buttons.modify') }}</v-btn>
+            @click="filter()"
+          >{{ $t('global.details.buttons.filter') }}</v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
@@ -116,12 +108,6 @@ export default {
     detailsShow: function (val) {
       if (val) {
         this.setFields()
-        if (this.details.action === 'edit') {
-          this.reload = true
-          setTimeout(() => {
-            this.reload = false
-          }, 100)
-        }
       }
     },
   },
@@ -151,7 +137,7 @@ export default {
       return result
     },
     detailsShow () {
-      return this.details.show
+      return this.filter.show
     },
   },
   methods: {
@@ -229,19 +215,9 @@ export default {
       }
     },
     close () {
-      this.details.show = false
+      this.filter.show = false
     },
-    update () {
-      this.updateItem([
-        this.details.id,
-        this.itemData,
-        this.$t('global.alerts.updated'),
-        this.$t('global.alerts.updateError'),
-      ]).then((response) => {
-        this.close()
-      })
-    },
-    store () {
+    filter () {
       this.storeItem([
         this.itemData,
         this.$t('global.alerts.stored'),

@@ -16,16 +16,14 @@ export default {
   search: 'Search',
   noMatchingResults: 'No matching records found',
   noDataAvailable: 'No data available',
-  rowsPerPageText: 'Rows per page:',
+  rowsPerPageText: 'Zeilen pro Seite:',
   records: 'Records',
   from: 'from',
   add: 'Add',
   all: 'All',
   buttons: {
-    remove: 'Dalete',
+    remove: 'Delete',
     add: 'Add',
-    removeMany: 'Delete many',
-    addMany: 'Add many',
     close: 'Close',
   },
 }

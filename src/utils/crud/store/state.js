@@ -22,6 +22,9 @@ const state = {
     formValid: false,
     item: {},
   },
+  filter: {
+    show: false,
+  },
   createdElement: {
     mode: 'ignore',
     created: false,
@@ -49,6 +52,7 @@ const state = {
   isItemsViewRefreshed: false,
   // extended details
   detailsDialog: false,
+  filterDialog: false,
   item: {},
   itemIdColumn: '',
   childItemsMapping: [],

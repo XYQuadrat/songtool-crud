@@ -37,9 +37,6 @@ const mutations = {
     state.currentItemId = null
     state.currentItemIndex = null
   },
-  setSelectedIds (state, items) {
-    state.selectedIds = items.map(item => item.meta.id)
-  },
   setCurrentItem (state, item) {
     state.currentItemId = item.id
     state.currentItemIndex = item.index
@@ -73,11 +70,6 @@ const mutations = {
   createItemDialog (state) {
     state.details.action = 'create'
     state.details.formValid = false
-    state.details.show = true
-  },
-  multipleEditDialog (state) {
-    state.details.action = 'multiedit'
-    state.details.formValid = true
     state.details.show = true
   },
   setCreationMode (state, creationMode) {
@@ -124,21 +116,6 @@ const mutations = {
   hideItemDetailsDialog (state) {
     state.detailsDialog = false
   },
-  setChildItemsMapping (state, data) {
-    state.childItemsMapping = data
-    for (const childItem of data) {
-      Vue.set(state.childItems, childItem.name, {
-        items: [],
-        details: {
-          show: false,
-          id: null,
-          action: null,
-          formValid: false,
-          item: {},
-        },
-      })
-    }
-  },
   setIdColumn (state, data) {
     state.itemIdColumn = data
   },
@@ -150,45 +127,14 @@ const mutations = {
       Vue.set(state.childItems, childItem.name, child)
     }
   },
-  // child
-  editChildDialog (state, [
-    id,
-    childItemName,
-  ]) {
-    const child = state.childItems[childItemName]
-    child.details.action = 'edit'
-    child.details.id = id
-    child.details.formValid = true
-    child.details.show = true
-    Vue.set(state.childItems, childItemName, child)
-  },
-  createChildDialog (state, childItemName) {
-    const child = state.childItems[childItemName]
-    child.details.action = 'create'
-    child.details.formValid = true
-    child.details.show = true
-    Vue.set(state.childItems, childItemName, child)
-  },
-  hideChildDialog (state, childItemName) {
-    const child = state.childItems[childItemName]
-    child.details.show = false
-    Vue.set(state.childItems, childItemName, child)
-  },
-  resetChild (state, childItemName) {
-    const child = state.childItems[childItemName]
-    child.details.item = {}
-    Vue.set(state.childItems, childItemName, child)
-  },
-  setChild (state, [
-    data,
-    childItemName,
-  ]) {
-    const child = state.childItems[childItemName]
-    child.details.item = data
-    Vue.set(state.childItems, childItemName, child)
-  },
   createFilterDialog (state) {
-    state.details.show = true
+    state.filter.show = true
+  },
+  showFilterDialog (state) {
+    state.filterDialog = true
+  },
+  hideFilterDialog (state) {
+    state.filterDialog = false
   },
 }
 

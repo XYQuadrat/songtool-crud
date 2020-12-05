@@ -43,7 +43,6 @@ export default {
         date: 'Date',
         textarea: 'Textarea',
         file: 'File',
-        richTextBox: 'RichTextBox',
         select: 'Select',
         multiselect: 'Multiselect',
         checkbox: 'Checkbox',

@@ -3,22 +3,14 @@
     <controls
       :create-mode="createMode"
       :edit-mode="editMode"
-      :delete-mode="deleteMode"
-      :select-many-mode="selectManyMode"
-      :update-many-mode="updateManyMode"
-      :remove-many-mode="removeManyMode"
       :main-filter="mainFilter"
       :field-filters="fieldFilters"
       :refresh-button="refreshButton"
-      :export-button="exportButton"
       :initialSearch="search"
       :initialSelectedStatuses="selectedStatuses"
       :initialColumnFilters="columnFilters"
       @create="create"
-      @editSelected="editSelected"
-      @suspendSelected="suspendSelected"
-      @restoreSelected="restoreSelected"
-      @destroySelected="destroySelected"
+      @filter="filter"
       @refreshItemsView="refreshItemsView"
       @updateColumnFilterMode="updateColumnFilterMode"
       @updateColumnFilterValue="updateColumnFilterValue"
@@ -30,7 +22,6 @@
     <!-- Table -->
     <v-data-table
       v-model="selected"
-      :show-select="selectManyMode"
       :options.sync="pagination"
       :headers="headers"
       :items="filteredItems"
@@ -55,14 +46,10 @@
             :item="item"
             :edit-button='editButton'
             :custom-buttons='customButtons'
-            :delete-mode='deleteMode'
             :item-elements="itemElements"
             :edit-mode="editMode"
-            :select-many-mode="selectManyMode"
             @edit="edit"
             @custom="custom"
-            @suspend="suspend"
-            @restore="restore"
             @destroy="destroy"
             @editItemElements="editItemElements"
             @doubleClick="resolveRowDoubleClick"

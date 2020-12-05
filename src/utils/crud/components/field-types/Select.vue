@@ -71,9 +71,6 @@ export default {
         const items = response.body
         selectItems = items.map((item) => {
           const rItem = item
-          if (typeof this.field.list.activeColumn !== 'undefined') {
-            rItem.itemDisabled = item[this.field.list.activeColumn] === 0
-          }
           if (typeof this.field.list.complexName !== 'undefined') {
             const textArray = this.field.list.complexName.map((textInfo) => {
               const splittedText = textInfo.split('.').reduce((object, property) => object[property] || '', item)

@@ -7,7 +7,6 @@
       :page-title="pageTitle"
       :fields-info="fieldsInfo"
       :details-title="detailsTitle"
-      :delete-mode="deleteMode"
       :refresh-button="refreshButton"
       :export-button="exportButton"
       :field-filters="fieldFilters"
@@ -15,9 +14,6 @@
       :create-mode="createMode"
       :edit-mode="editMode"
       :edit-button="editButton"
-      :select-many-mode="selectManyMode"
-      :update-many-mode="updateManyMode"
-      :remove-many-mode="removeManyMode"
     ></crud>
     <alert-box></alert-box>
   </div>
@@ -34,7 +30,6 @@ export default {
       path: 'songs',
       pageTitle: 'crud.songs',
       detailsTitle: '',
-      deleteMode: 'hard',
       refreshButton: true,
       exportButton: true,
       fieldFilters: true,
@@ -42,9 +37,6 @@ export default {
       createMode: true,
       editMode: true,
       editButton: true,
-      selectManyMode: false,
-      updateManyMode: false,
-      removeManyMode: false,
     }
   },
   created () {

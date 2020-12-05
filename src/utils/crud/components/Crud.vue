@@ -7,20 +7,14 @@
         :meta="meta"
         :custom-buttons="customButtons"
         :item-elements="itemElements"
-        :delete-mode="deleteMode"
         :edit-button="editButton"
         :table-fields="tableFields"
         :primary-key="primaryKey"
-        :active-column-name="activeColumnName"
         :create-mode="createMode"
         :edit-mode="editMode"
         :main-filter="mainFilter"
         :field-filters="fieldFilters"
         :refresh-button="refreshButton"
-        :export-button="exportButton"
-        :select-many-mode="selectManyMode"
-        :update-many-mode="updateManyMode"
-        :remove-many-mode="removeManyMode"
       >
         <!-- slots for fields -->
         <template
@@ -80,14 +74,7 @@
           <slot name="item-details-under-fields"/>
         </template>
 
-        <!-- slot for custom actions -->
-        <template #custom-actions>
-          <slot name="item-details-custom-actions"/>
-        </template>
-
       </item-details>
-      <item-elements></item-elements>
-      <!-- <image-container></image-container> -->
     </div>
     <div class="details-loader-container">
       <v-layout
@@ -141,19 +128,6 @@ export default {
       type: Boolean,
       default: crud.editButton || true,
     },
-    deleteMode: {
-      type: String,
-      validator (value) {
-        return [
-          'none',
-          'soft',
-          'hard',
-          'both',
-          'filter',
-        ].indexOf(value) !== -1
-      },
-      default: crud.deleteMode || 'soft',
-    },
     customHeaderButtons: {
       type: Array,
       default: () => [],
@@ -177,10 +151,6 @@ export default {
     primaryKey: {
       type: String,
       default: crud.primaryKey || 'id',
-    },
-    activeColumnName: {
-      type: String,
-      default: crud.activityColumnName || 'active',
     },
     mode: {
       type: String,

@@ -6,11 +6,10 @@ function parseIntIfNumber (str) {
   return !/\D/.test(str) ? parseInt(str) : str
 }
 
-function getItemsList (obj, fields, meta, primaryKey, customButtons, activeColumnName) {
+function getItemsList (obj, fields, meta, primaryKey, customButtons) {
   const rObj = {}
   rObj.meta = {
     id: obj[primaryKey],
-    active: obj[activeColumnName],
     buttons: {},
     item: {},
   }

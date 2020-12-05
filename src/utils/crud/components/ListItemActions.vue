@@ -22,7 +22,6 @@
     ></crud-button>
     <!-- hard delete -->
     <crud-button
-      v-if="['hard', 'both'].includes(deleteMode)"
       small
       color="black"
       icon="delete"
@@ -43,14 +42,9 @@ export default {
     item: {},
     editButton: {},
     customButtons: {},
-    deleteMode: {},
     itemElements: {},
     dynamicTextModes: {},
     editMode: {},
-    selectManyMode: {
-      type: Boolean,
-      default: false,
-    },
   },
   methods: {
     edit (id) { this.$emit('edit', id) },

@@ -9,22 +9,17 @@ export default {
   props: [
     'itemsViewConfig',
     'tableFields',
-    'deleteMode',
     'customButtons',
     'itemElements',
     'editButton',
     'meta',
     'primaryKey',
-    'activeColumnName',
     'createMode',
     'editMode',
     'mainFilter',
     'fieldFilters',
     'exportButton',
     'refreshButton',
-    'selectManyMode',
-    'updateManyMode',
-    'removeManyMode',
   ],
   data () {
     return {
@@ -49,7 +44,6 @@ export default {
         this.meta,
         this.primaryKey,
         this.customButtons,
-        this.activeColumnName
       )
     },
   },
@@ -64,7 +58,8 @@ export default {
       'multipleEditDialog',
       'setItemElementsInfo',
       'editItemElementsDialog',
-      'setSelectedIds',
+      'createFilterDialog',
+      'showFilterDialog',
     ]),
     ...mapActions('crud', [
       'getItem',
@@ -89,25 +84,8 @@ export default {
       this.resetItem()
       this.createItemDialog()
     },
-    suspend (id) {
-      const obj = {}
-      obj[this.activeColumnName] = 0
-      this.updateItem([
-        id,
-        obj,
-        this.$t('global.alerts.suspended'),
-        this.$t('global.alerts.suspendError'),
-      ])
-    },
-    restore (id) {
-      const obj = {}
-      obj[this.activeColumnName] = 1
-      this.updateItem([
-        id,
-        obj,
-        this.$t('global.alerts.restored'),
-        this.$t('global.alerts.restoreError'),
-      ])
+    filter () {
+      this.createFilterDialog()
     },
     destroy (id) {
       if (confirm(this.$t('global.alerts.confirm'))) {

@@ -23,16 +23,6 @@
         :tooltip="$t('global.datatable.add')"
       />
 
-      <!-- hard delete -->
-      <crud-button
-        v-if="['hard', 'both'].includes(deleteMode) && selectManyMode && removeManyMode"
-        large
-        color="black"
-        @clicked="destroySelected()"
-        icon="delete"
-        :tooltip="$t('global.datatable.buttons.deleteSelected')"
-      />
-
       <!-- slot -->
       <slot name="left"></slot>
 
@@ -115,10 +105,6 @@ export default {
   props: [
     'createMode',
     'editMode',
-    'deleteMode',
-    'selectManyMode',
-    'updateManyMode',
-    'removeManyMode',
     'mainFilter',
     'fieldFilters',
     'refreshButton',
@@ -135,18 +121,6 @@ export default {
     }
   },
   computed: {
-    statuses () {
-      return [
-        {
-          text: this.$t('global.datatable.status.active'),
-          value: 1,
-        },
-        {
-          text: this.$t('global.datatable.status.inactive'),
-          value: 0,
-        },
-      ]
-    },
     filterModes () {
       return [
         {
@@ -177,9 +151,6 @@ export default {
     updateSearch: _.debounce(function () {
       this.$emit('updateSearch', this.search)
     }, 250),
-    updateSelectedStatuses () {
-      this.$emit('updateSelectedStatuses', this.selectedStatuses)
-    },
     updateColumnFilterMode (event, index) {
       this.$emit('updateColumnFilterMode', event, index)
     },
