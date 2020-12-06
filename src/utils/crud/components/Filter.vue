@@ -22,16 +22,7 @@
             :key="i"
           >
             <v-layout row wrap>
-              <v-flex
-                v-if="details.action == 'multiedit' && field.show"
-                class="sm1"
-              >
-                <input
-                  type="checkbox"
-                  v-model="field.updateColumn"
-                >
-              </v-flex>
-              <v-flex :class="details.action == 'multiedit' ? 'sm11' : 'sm12'">
+              <v-flex :class="'sm12'">
                 <item-details-field
                   :field="field"
                   :dynamic-field-type="dynamicFieldType(field.typeField)"
@@ -105,7 +96,7 @@ export default {
     }
   },
   watch: {
-    detailsShow: function (val) {
+    filterShow: function (val) {
       if (val) {
         this.setFields()
       }
@@ -117,6 +108,7 @@ export default {
   },
   computed: {
     ...mapState('crud', [
+      'filter',
       'details',
       'path',
       'prefix',
@@ -136,7 +128,7 @@ export default {
       console.log(result)
       return result
     },
-    detailsShow () {
+    filterShow () {
       return this.filter.show
     },
   },
@@ -151,15 +143,7 @@ export default {
     setFields () {
       const result = this.detailsFields.map((field) => {
         const rField = field
-        let show = true
-        if (this.details.action === 'create') {
-          show = field.create !== false
-        } else if (this.details.action === 'multiedit') {
-          show = field.multiedit !== false
-        } else if (this.details.action === 'edit') {
-          show = field.edit !== false
-        }
-        rField.show = show
+        rField.show = true
         rField.value = this.details.item[field.column]
         if (typeof rField.value !== 'undefined') {
           const fieldValue = this.details.item[field.column]

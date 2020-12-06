@@ -18,7 +18,6 @@ export default {
     'editMode',
     'mainFilter',
     'fieldFilters',
-    'exportButton',
     'refreshButton',
   ],
   data () {
@@ -49,16 +48,15 @@ export default {
   },
   methods: {
     ...mapMutations('crud', [
-      'showItemDetailsDialog',
       'setCurrentItem',
       'resetItems',
       'resetItem',
       'editItemDialog',
       'createItemDialog',
+      'createFilterDialog',
       'multipleEditDialog',
       'setItemElementsInfo',
       'editItemElementsDialog',
-      'createFilterDialog',
       'showFilterDialog',
     ]),
     ...mapActions('crud', [

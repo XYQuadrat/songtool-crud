@@ -43,20 +43,11 @@ const state = {
     data: [],
   },
   availableElements: [],
-  imageContainer: {
-    show: false,
-    item: {},
-  },
   selectedIds: [],
   // isItemsViewRefreshed
   isItemsViewRefreshed: false,
-  // extended details
-  detailsDialog: false,
-  filterDialog: false,
   item: {},
   itemIdColumn: '',
-  childItemsMapping: [],
-  childItems: {},
   // api
   apiUrl: api.url,
   apiPath: api.path,

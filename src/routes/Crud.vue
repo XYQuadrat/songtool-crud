@@ -8,7 +8,6 @@
       :fields-info="fieldsInfo"
       :details-title="detailsTitle"
       :refresh-button="refreshButton"
-      :export-button="exportButton"
       :field-filters="fieldFilters"
       :main-filter="mainFilter"
       :create-mode="createMode"

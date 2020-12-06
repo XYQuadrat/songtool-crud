@@ -38,10 +38,5 @@ export default {
       return rvalue
     },
   },
-  methods: {
-    fieldInfoToJSON (value) {
-      return JSON.parse(value)
-    },
-  },
 }
 </script>

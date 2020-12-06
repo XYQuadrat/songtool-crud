@@ -10,16 +10,6 @@
       :tooltip="$t('global.datatable.buttons.edit')"
       @clicked="edit(item.meta.id)"
     ></crud-button>
-    <!-- buttons for open modal with item elements -->
-    <crud-button
-      v-for="(button, key) in itemElements"
-      :key="key"
-      small
-      :color="button.color"
-      :icon="button.icon"
-      :tooltip="button.buttonText"
-      @clicked="editItemElements(key, item.meta.id)"
-    ></crud-button>
     <!-- hard delete -->
     <crud-button
       small
@@ -49,8 +39,6 @@ export default {
   methods: {
     edit (id) { this.$emit('edit', id) },
     custom (name, item) { this.$emit('custom', name, item) },
-    suspend (id) { this.$emit('suspend', id) },
-    restore (id) { this.$emit('restore', id) },
     destroy (id) { this.$emit('destroy', id) },
     editItemElements (name, id) { this.$emit('editItemElements', name, id) },
   },

@@ -102,11 +102,13 @@ import {
   mapActions,
 } from 'vuex'
 import ItemDetails from './ItemDetails.vue'
+import Filter from './Filter.vue'
 import crud from '@/config/crud'
 
 export default {
   components: {
     ItemDetails,
+    Filter,
   },
   props: {
     prefix: {
@@ -197,10 +199,6 @@ export default {
     fieldFilters: {
       type: Boolean,
       default: crud.fieldFilters === undefined ? true : crud.fieldFilters,
-    },
-    exportButton: {
-      type: Boolean,
-      default: crud.exportButton === undefined ? true : crud.exportButton,
     },
     refreshButton: {
       type: Boolean,

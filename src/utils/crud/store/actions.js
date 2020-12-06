@@ -200,56 +200,11 @@ const actions = {
         ], { root: true })
       })
   },
-  // extented details
-  getItemDetails ({ commit, getters, dispatch }, [id]) {
-    return new Promise((resolve, reject) => {
-      commit('setDetailsLoader', true)
-      Vue.http.get(`${getters.path('sh')}/${id}`)
-        .then((response) => {
-          commit('itemDetails', response.body)
-          commit('setDetailsLoader', false)
-          resolve()
-        }, (error) => {
-          dispatch('openAlertBox', [
-            'alertError',
-            error.statusText,
-          ], { root: true })
-          reject(error)
-        })
-    })
-  },
-  updateItemDetail ({
-    dispatch, state, getters,
-  }, [
-    id,
-    params,
-    successText,
-  ]) {
-    Vue.http.put(`${getters.path('u')}/${id}`, params)
-      .then((response) => {
-        if (response.body.status === 0) {
-          dispatch('openAlertBox', [
-            'alertSuccess',
-            successText,
-          ], { root: true })
-        } else if (response.body.status === -1) {
-          dispatch('openAlertBox', [
-            'alertError',
-            response.body.msg,
-          ], { root: true })
-        } else if (response.body.status === -2) {
-          dispatch('openAlertBox', [
-            'alertValidationError',
-            response.body.msg,
-          ], { root: true })
-        }
-        dispatch('getItemDetails', [state.item[state.itemIdColumn]])
-      }, (error) => {
-        dispatch('openAlertBox', [
-          'alertError',
-          error.statusText,
-        ], { root: true })
-      })
+  runItemsViewRefreshing ({ commit }) {
+    commit('refreshTable', true)
+    setTimeout(() => {
+      commit('refreshTable', false)
+    }, 2000)
   },
 }
 

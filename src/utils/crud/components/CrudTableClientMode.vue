@@ -7,7 +7,6 @@
       :field-filters="fieldFilters"
       :refresh-button="refreshButton"
       :initialSearch="search"
-      :initialSelectedStatuses="selectedStatuses"
       :initialColumnFilters="columnFilters"
       @create="create"
       @filter="filter"
@@ -15,7 +14,6 @@
       @updateColumnFilterMode="updateColumnFilterMode"
       @updateColumnFilterValue="updateColumnFilterValue"
       @updateSearch="updateSearch"
-      @updateSelectedStatuses="updateSelectedStatuses"
       @clearFilters="clearFilters"
     >
     </controls>
@@ -116,7 +114,6 @@ export default {
   computed: {
     ...mapState('crud', [
       'loading',
-      'detailsDialog',
       'isItemsViewRefreshed',
     ]),
     totalItems () {
@@ -130,9 +127,7 @@ export default {
       const realIndex = (page - 1) * this.pagination.itemsPerPage + index
       const newItemId = this.filteredItems[realIndex].meta.id
       this.setCurrentItem({ id: newItemId, index })
-      this.getItemDetails([newItemId]).then((response) => {
-        this.showItemDetailsDialog()
-      })
+      this.getItemDetails([newItemId])
     },
   },
   created () {
@@ -140,11 +135,6 @@ export default {
     this.getItems()
   },
   watch: {
-    detailsDialog (val) {
-      if (!val) {
-        this.getItems()
-      }
-    },
     isItemsViewRefreshed (val) {
       if (val) {
         this.getItems()

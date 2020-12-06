@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 const mutations = {
   // page info
   setPrefix (state, prefix) {
@@ -109,32 +107,8 @@ const mutations = {
   refreshTable (state, status) {
     state.isItemsViewRefreshed = status
   },
-  // extended details
-  showItemDetailsDialog (state) {
-    state.detailsDialog = true
-  },
-  hideItemDetailsDialog (state) {
-    state.detailsDialog = false
-  },
-  setIdColumn (state, data) {
-    state.itemIdColumn = data
-  },
-  itemDetails (state, data) {
-    state.item = data
-    for (const childItem of state.childItemsMapping) {
-      const child = state.childItems[childItem.name]
-      child.items = state.item[childItem.objName]
-      Vue.set(state.childItems, childItem.name, child)
-    }
-  },
-  createFilterDialog (state) {
+  filterDialog (state) {
     state.filter.show = true
-  },
-  showFilterDialog (state) {
-    state.filterDialog = true
-  },
-  hideFilterDialog (state) {
-    state.filterDialog = false
   },
 }
 

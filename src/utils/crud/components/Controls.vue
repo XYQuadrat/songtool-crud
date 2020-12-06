@@ -108,15 +108,12 @@ export default {
     'mainFilter',
     'fieldFilters',
     'refreshButton',
-    'exportButton',
     'initialSearch',
-    'initialSelectedStatuses',
     'initialColumnFilters',
   ],
   data () {
     return {
       search: '',
-      selectedStatuses: [],
       columnFilters: [],
     }
   },
@@ -163,8 +160,6 @@ export default {
     clearFilters () {
       this.search = ''
       this.updateSearch()
-      this.selectedStatuses = [1]
-      this.updateSelectedStatuses()
       for (const column of this.columnFilters) {
         column.mode = 'like'
         column.value = ''
@@ -175,7 +170,6 @@ export default {
   },
   created () {
     this.search = this.initialSearch
-    this.selectedStatuses = this.initialSelectedStatuses
     this.columnFilters = this.initialColumnFilters
   },
 }
@@ -192,14 +186,6 @@ export default {
   }
   &__search-input {
     margin-top: -8px;
-  }
-  &__select-statuses {
-    margin: 0 15px;
-    display: inline-block;
-    width: 120px;
-    @media (min-width: 500px) {
-      width: 250px;
-    }
   }
 }
 </style>
