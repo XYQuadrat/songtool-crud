@@ -2,7 +2,6 @@ import alerts from './alerts'
 import routes from './routes'
 import datatable from './datatable'
 import details from './details'
-import itemElements from './item-elements'
 
 export default {
   global: {
@@ -10,6 +9,5 @@ export default {
     routes,
     datatable,
     details,
-    itemElements,
   },
 }

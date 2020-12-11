@@ -10,7 +10,6 @@ const getters = {
     }
     return path
   },
-  itemCreated: state => state.createdElement.created,
   itemsList: state => (fields, meta, primaryKey, customButtons) => {
     const result = state.items.map(
       obj => getItemsList(

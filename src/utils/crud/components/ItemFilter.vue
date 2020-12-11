@@ -61,7 +61,6 @@
           <slot name="custom-actions" />
           <v-btn color="black" text @click.native="close()">{{ $t('global.details.buttons.close') }}</v-btn>
           <v-btn
-            :disabled="!details.formValid"
             color="green"
             text
             @click="filter()"
@@ -136,7 +135,6 @@ export default {
     ...mapActions('crud', [
       'updateItem',
       'storeItem',
-      'mulitipleItemsUpdate',
     ]),
     ...mapActions(['openAlertBox']),
     ...mapMutations('crud', ['resetItem']),

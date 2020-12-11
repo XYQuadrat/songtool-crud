@@ -1,5 +1,4 @@
 export default {
-  multipleUpdateTitle: 'Multiple records update',
   title: 'Details',
   rules: {
     required: 'Feld ist obligatorisch',

@@ -70,39 +70,6 @@ const mutations = {
     state.details.formValid = false
     state.details.show = true
   },
-  setCreationMode (state, creationMode) {
-    state.createdElement.mode = creationMode
-  },
-  setCreatedItemStatus (state, [
-    created,
-    id,
-  ]) {
-    state.createdElement.created = created
-    state.createdElement.id = id
-  },
-  // item elements
-  setItemElements (state, data) {
-    state.itemElements.data = data
-  },
-  resetItemElements (state) {
-    state.itemElements.data = []
-  },
-  setItemElementsInfo (state, [
-    id,
-    obj,
-  ]) {
-    state.itemElements.id = id
-    state.itemElements.title = obj.title
-    state.itemElements.url = obj.url
-    state.itemElements.columns = obj.columns
-    state.itemElements.controller = obj.controller
-    state.itemElements.itemObject = obj.itemObject
-    state.itemElements.primaryId = obj.primaryId
-    state.itemElements.foreignId = obj.foreignId
-    state.itemElements.connectionKeyName = obj.connectionKeyName
-    state.itemElements.dictionaryKeyName = obj.dictionaryKeyName
-    state.itemElements.show = true
-  },
   // refresh table
   refreshTable (state, status) {
     state.isItemsViewRefreshed = status

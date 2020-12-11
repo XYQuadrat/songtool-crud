@@ -32,7 +32,6 @@ export default {
     item: {},
     editButton: {},
     customButtons: {},
-    itemElements: {},
     dynamicTextModes: {},
     editMode: {},
   },
@@ -40,7 +39,6 @@ export default {
     edit (id) { this.$emit('edit', id) },
     custom (name, item) { this.$emit('custom', name, item) },
     destroy (id) { this.$emit('destroy', id) },
-    editItemElements (name, id) { this.$emit('editItemElements', name, id) },
   },
 }
 </script>

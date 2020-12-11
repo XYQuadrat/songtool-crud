@@ -25,24 +25,6 @@ const state = {
   filter: {
     show: false,
   },
-  createdElement: {
-    mode: 'ignore',
-    created: false,
-    id: null,
-  },
-  itemElements: {
-    show: false,
-    id: null,
-    columns: [],
-    controller: '',
-    itemObject: '',
-    primaryId: '',
-    foreignId: '',
-    title: '',
-    url: '',
-    data: [],
-  },
-  availableElements: [],
   selectedIds: [],
   // isItemsViewRefreshed
   isItemsViewRefreshed: false,

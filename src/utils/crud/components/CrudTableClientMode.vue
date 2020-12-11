@@ -44,12 +44,10 @@
             :item="item"
             :edit-button='editButton'
             :custom-buttons='customButtons'
-            :item-elements="itemElements"
             :edit-mode="editMode"
             @edit="edit"
             @custom="custom"
             @destroy="destroy"
-            @editItemElements="editItemElements"
             @doubleClick="resolveRowDoubleClick"
           />
           <span v-else>

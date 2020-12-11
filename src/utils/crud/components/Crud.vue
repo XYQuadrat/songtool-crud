@@ -6,7 +6,6 @@
         :itemsViewConfig="itemsViewConfig"
         :meta="meta"
         :custom-buttons="customButtons"
-        :item-elements="itemElements"
         :edit-button="editButton"
         :table-fields="tableFields"
         :primary-key="primaryKey"
@@ -75,6 +74,11 @@
         </template>
 
       </item-details>
+      <item-filter
+        :title="detailsTitle"
+        :details-fields="detailsFields"
+        :width="itemDetailsWidth">
+      </item-filter>
     </div>
     <div class="details-loader-container">
       <v-layout
@@ -102,13 +106,13 @@ import {
   mapActions,
 } from 'vuex'
 import ItemDetails from './ItemDetails.vue'
-import Filter from './Filter.vue'
+import ItemFilter from './ItemFilter.vue'
 import crud from '@/config/crud'
 
 export default {
   components: {
     ItemDetails,
-    Filter,
+    ItemFilter,
   },
   props: {
     prefix: {
@@ -141,10 +145,6 @@ export default {
     meta: {
       type: Array,
       default: () => [],
-    },
-    itemElements: {
-      type: Object,
-      default: () => { },
     },
     watchForCreation: {
       type: Boolean,
@@ -267,9 +267,6 @@ export default {
     ...mapActions('crud', ['runItemsViewRefreshing']),
     custom (name, item, index) {
       this.$parent[name](item, index)
-    },
-    itemElementsClosed () {
-      this.runItemsViewRefreshing()
     },
     calcitemsViewMode (mode) {
       const modesMap = {

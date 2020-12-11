@@ -10,7 +10,6 @@ export default {
     'itemsViewConfig',
     'tableFields',
     'customButtons',
-    'itemElements',
     'editButton',
     'meta',
     'primaryKey',
@@ -53,18 +52,13 @@ export default {
       'resetItem',
       'editItemDialog',
       'createItemDialog',
-      'createFilterDialog',
-      'multipleEditDialog',
-      'setItemElementsInfo',
-      'editItemElementsDialog',
-      'showFilterDialog',
+      'filterDialog',
     ]),
     ...mapActions('crud', [
       'getItem',
       'updateItem',
       'storeItem',
       'deleteItem',
-      'getItemElements',
       'getItemDetails',
       'runItemsViewRefreshing',
     ]),
@@ -83,7 +77,7 @@ export default {
       this.createItemDialog()
     },
     filter () {
-      this.createFilterDialog()
+      this.filterDialog()
     },
     destroy (id) {
       if (confirm(this.$t('global.alerts.confirm'))) {
@@ -97,14 +91,6 @@ export default {
     custom (name, item) {
       const index = this.getItemIndex(item.meta.id)
       this.$parent.custom(name, item, index)
-    },
-    editItemElements (name, id) {
-      const obj = this.itemElements[name]
-      this.setItemElementsInfo([
-        id,
-        obj,
-      ])
-      this.getItemElements()
     },
   },
 }

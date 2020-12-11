@@ -115,13 +115,6 @@ const actions = {
               response.body.msg,
             ], { root: true })
           }
-          if (state.createdElement.mode === 'inform') {
-            console.log('response id', response.body.id)
-            commit('setCreatedItemStatus', [
-              true,
-              response.body.id,
-            ])
-          }
         }, (error) => {
           dispatch('openAlertBox', [
             'alertError',
@@ -145,54 +138,6 @@ const actions = {
           successText,
         ], { root: true })
         dispatch('runItemsViewRefreshing')
-      }, () => {
-        dispatch('openAlertBox', [
-          'alertError',
-          errorText,
-        ], { root: true })
-      })
-  },
-  // item elements
-  getItemElements ({ commit, state }) {
-    const url = state.itemElements.url.replace('{id}', state.itemElements.id)
-    Vue.http.get(url)
-      .then(response => commit('setItemElements', response.body))
-  },
-  addItemElement ({
-    dispatch, state,
-  }, [
-    params,
-    successText,
-    errorText,
-  ]) {
-    Vue.http.post(state.itemElements.controller, params)
-      .then(() => {
-        dispatch('openAlertBox', [
-          'alertSuccess',
-          successText,
-        ], { root: true })
-        dispatch('getItemElements')
-      }, () => {
-        dispatch('openAlertBox', [
-          'alertError',
-          errorText,
-        ], { root: true })
-      })
-  },
-  removeItemElement ({
-    dispatch, state,
-  }, [
-    id,
-    successText,
-    errorText,
-  ]) {
-    Vue.http.delete(`${state.itemElements.controller}/${id}`)
-      .then(() => {
-        dispatch('openAlertBox', [
-          'alertSuccess',
-          successText,
-        ], { root: true })
-        dispatch('getItemElements')
       }, () => {
         dispatch('openAlertBox', [
           'alertError',
