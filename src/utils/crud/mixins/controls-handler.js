@@ -20,7 +20,15 @@ export default {
       this.startSearching()
     },
     updateColumnFilters (columnFilters) {
-      this.$set(this, 'columnFilters', columnFilters)
+      const obj = this.columnFilters
+      let i = 0
+      for (let key in columnFilters) {
+        if (columnFilters[key] != null) {
+          obj[i].value = columnFilters[key]
+        }
+        ++i
+      }
+      this.$set(this, 'columnFilters', obj)
       this.startSearching()
     },
     updateSearch (search) {

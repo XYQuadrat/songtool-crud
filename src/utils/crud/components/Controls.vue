@@ -154,14 +154,13 @@ export default {
     updateColumnFilterValue: _.debounce(function (event, index) {
       this.$emit('updateColumnFilterValue', event, index)
     }, 250),
-    updateColumnFilters () {
-      this.$emit('updateColumnFilters', this.columnFilters)
+    updateColumnFilters (event) {
+      this.$emit('updateColumnFilters', event)
     },
     clearFilters () {
       this.search = ''
       this.updateSearch()
       for (const column of this.columnFilters) {
-        column.mode = 'like'
         column.value = ''
       }
       this.updateColumnFilters()

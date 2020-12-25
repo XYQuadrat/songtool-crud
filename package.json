@@ -7,20 +7,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
-    "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
-    "docs:build": "node docs.js && vuepress build docs",
-    "docs:dev": "node docs.js && vuepress dev docs",
-    "load-template": "node template-loader.js",
-    "test:unit": "vue-cli-service test:unit"
+    "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "register-service-worker": "^1.7.1",
     "vue": "^2.6.12",
     "vue-i18n": "^8.22.2",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.4.9",
-    "vuetify": "^2.3.19",
+    "vuetify": "^2.4.0",
     "vuex": "^3.6.0"
   },
   "devDependencies": {
@@ -30,12 +25,8 @@
     "@vue/cli-plugin-unit-jest": "^3.8.0",
     "@vue/cli-service": "^3.2.0",
     "@vue/eslint-config-standard": "^4.0.0",
-    "@vue/test-utils": "1.0.0-beta.29",
-    "@vuepress/plugin-google-analytics": "^1.7.1",
-    "@vuepress/plugin-pwa": "^1.7.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^24.8.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "fs-extra": "^7.0.1",
@@ -47,7 +38,6 @@
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.6.3",
     "vue-template-compiler": "^2.6.12",
-    "vuepress": "^1.7.1",
     "vuetify-loader": "^1.6.0"
   },
   "postcss": {
@@ -58,6 +48,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 11"
   ]
 }

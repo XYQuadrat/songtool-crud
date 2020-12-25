@@ -63,7 +63,7 @@
           <v-btn
             color="green"
             text
-            @click="filter()"
+            @click="applyFilter()"
           >{{ $t('global.details.buttons.filter') }}</v-btn>
         </v-card-actions>
       </v-form>
@@ -124,7 +124,6 @@ export default {
           result[field.column] = field.value !== undefined ? field.value : null
         }
       }
-      console.log(result)
       return result
     },
     filterShow () {
@@ -132,10 +131,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions('crud', [
-      'updateItem',
-      'storeItem',
-    ]),
     ...mapActions(['openAlertBox']),
     ...mapMutations('crud', ['resetItem']),
     setFields () {
@@ -199,14 +194,9 @@ export default {
     close () {
       this.filter.show = false
     },
-    filter () {
-      this.storeItem([
-        this.itemData,
-        this.$t('global.alerts.stored'),
-        this.$t('global.alerts.storeError'),
-      ]).then((response) => {
-        this.close()
-      })
+    applyFilter () {
+      this.$emit('controlUpdateFilters', this.itemData)
+      this.close()
     },
   },
 }

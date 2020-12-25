@@ -12,14 +12,14 @@ export default {
           let matchesFilter = false
           const colName = columnFilters[i].name
           let field = item[colName]
-          const keys = columnFilters[i].value.split(',').map(item => item.trim().toLowerCase())
+          const keys = columnFilters[i].value.toString().split(',').map(item => item.trim().toLowerCase())
           for (var j = 0; j < keys.length; ++j) {
             if (typeof field === 'string' || field instanceof String || typeof field === 'number') {
               field = field.toString().toLowerCase()
               if (field.includes(keys[j])) {
                 matchesFilter = true
               }
-            } else if (field instanceof Array || Array.isArray(field)) {
+            } else if (Array.isArray(field)) {
               field = field.join(' ').toLowerCase()
               if (field.includes(keys[j])) {
                 matchesFilter = true

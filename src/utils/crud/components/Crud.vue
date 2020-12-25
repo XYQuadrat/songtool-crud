@@ -1,8 +1,7 @@
 <template>
   <div style="position:relative;">
     <div>
-      <component
-        :is="componentLoader"
+      <crud-table-client-mode
         :itemsViewConfig="itemsViewConfig"
         :meta="meta"
         :custom-buttons="customButtons"
@@ -14,6 +13,7 @@
         :main-filter="mainFilter"
         :field-filters="fieldFilters"
         :refresh-button="refreshButton"
+        ref="crudtable"
       >
         <!-- slots for fields -->
         <template
@@ -26,7 +26,7 @@
             :value="value"
           />
         </template>
-      </component>
+      </crud-table-client-mode>
       <item-details
         :title="detailsTitle"
         :details-fields="detailsFields"
@@ -77,7 +77,8 @@
       <item-filter
         :title="detailsTitle"
         :details-fields="detailsFields"
-        :width="itemDetailsWidth">
+        :width="itemDetailsWidth"
+        @controlUpdateFilters="updateFilters($event)">
       </item-filter>
     </div>
     <div class="details-loader-container">
@@ -105,12 +106,14 @@ import {
   mapMutations,
   mapActions,
 } from 'vuex'
+import CrudTableClientMode from './CrudTableClientMode.vue'
 import ItemDetails from './ItemDetails.vue'
 import ItemFilter from './ItemFilter.vue'
 import crud from '@/config/crud'
 
 export default {
   components: {
+    CrudTableClientMode,
     ItemDetails,
     ItemFilter,
   },
@@ -249,11 +252,6 @@ export default {
       }
       return config
     },
-    componentLoader () {
-      const typeNamePart = this.componentTypesMap[this.itemsViewType]
-      const modeNamePart = this.componentModesMap[this.itemsViewMode]
-      return () => import(`./Crud${typeNamePart}${modeNamePart}.vue`)
-    },
   },
   methods: {
     ...mapMutations('crud', [
@@ -261,7 +259,6 @@ export default {
       'setPath',
       'setPaths',
       'setPage',
-      'setCreationMode',
       'setItemsViewType',
     ]),
     ...mapActions('crud', ['runItemsViewRefreshing']),
@@ -275,14 +272,15 @@ export default {
       }
       return modesMap[mode]
     },
+    updateFilters (event) {
+      this.$refs.crudtable.updateColumnFilters(event)
+    },
   },
   created () {
     this.setPrefix(this.prefix)
     this.setPath(this.path)
     this.setPaths(this.paths)
     this.setPage(this.pageTitle)
-    const creationMode = this.watchForCreation ? 'inform' : 'ignore'
-    this.setCreationMode(creationMode)
     this.setItemsViewType(this.itemsViewType)
   },
 }
