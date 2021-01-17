@@ -76,7 +76,7 @@
       </item-details>
       <item-filter
         :title="detailsTitle"
-        :details-fields="detailsFields"
+        :details-fields="filterFields"
         :width="itemDetailsWidth"
         @controlUpdateFilters="updateFilters($event)">
       </item-filter>
@@ -232,6 +232,12 @@ export default {
     },
     detailsFields () {
       return this.fieldsInfo.filter(field => field.details !== false && field.type !== 'divider')
+    },
+    filterFields () {
+      if (this.$refs.crudtable != null) {
+        return this.$refs.crudtable.columnFilters
+      }
+      return this.detailsFields
     },
     itemsViewType () {
       return this.itemsView && this.itemsView.type ? this.itemsView.type : this.defaultItemsViewType

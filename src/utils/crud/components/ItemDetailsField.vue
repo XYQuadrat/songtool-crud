@@ -75,7 +75,7 @@ export default {
   methods: {
     fieldRules (field) {
       const rules = []
-      const required = field.required !== undefined ? field.required : true
+      const required = field.required !== undefined ? field.required : false
       if (required) {
         rules.push(this.rules.required)
       }

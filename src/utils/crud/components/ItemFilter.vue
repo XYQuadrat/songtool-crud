@@ -36,7 +36,6 @@
                       fieldType,
                       field,
                       reload,
-                      rules,
                       changeValue,
                     }"
                   >
@@ -46,7 +45,6 @@
                       :field-type="fieldType"
                       :field="field"
                       :reload="reload"
-                      :rules="rules"
                       :change-value="changeValue"
                     />
                   </template>
@@ -72,7 +70,7 @@
 </template>
 <script>
 import ItemDetailsField from './ItemDetailsField.vue'
-import { fieldModifiers } from '@/utils/crud/helpers/functions'
+// import { fieldModifiers } from '@/utils/crud/helpers/functions'
 import {
   mapState,
   mapMutations,
@@ -137,9 +135,9 @@ export default {
       const result = this.detailsFields.map((field) => {
         const rField = field
         rField.show = true
-        rField.value = this.details.item[field.column]
+        rField.value = field.value
         if (typeof rField.value !== 'undefined') {
-          const fieldValue = this.details.item[field.column]
+          const fieldValue = field.value
           if (field.type === 'select' || field.type === 'multiselect') {
             const defaultVal = field.list.default || field.required ? 1 : []
             rField.value = fieldValue || defaultVal
@@ -160,17 +158,6 @@ export default {
               'false',
             ].includes(fieldValue)) {
               rField.value = 0
-            }
-          }
-          if (field.apiObject) {
-            if (field.apiObject.useFunctionsInDetails) {
-              const functions = field.apiObject.functions || []
-              const availableFunctions = fieldModifiers
-
-              for (let i = 0; i < functions.length; i++) {
-                const functionName = functions[i]
-                rField.value = availableFunctions[functionName](rField.value)
-              }
             }
           }
         } else if (field.type === 'checkbox') {
