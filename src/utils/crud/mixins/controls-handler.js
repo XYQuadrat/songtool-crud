@@ -7,18 +7,7 @@ export default {
     }
   },
   methods: {
-    updateColumnFilterMode (val, index) {
-      const obj = this.columnFilters
-      obj[index].mode = val
-      this.$set(this, 'columnFilters', obj)
-      this.startSearching()
-    },
-    updateColumnFilterValue (val, index) {
-      const obj = this.columnFilters
-      obj[index].value = val
-      this.$set(this, 'columnFilters', obj)
-      this.startSearching()
-    },
+
     updateColumnFilters (columnFilters) {
       const obj = this.columnFilters
       let i = 0

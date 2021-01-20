@@ -15,22 +15,6 @@ const actions = {
         ], { root: true })
       })
   },
-  getItemsServerSide ({ commit, getters, dispatch }, [params]) {
-    return new Promise((resolve, reject) => {
-      commit('setLoadingStatus', true)
-      Vue.http.post(`${getters.path('i')}/search`, params)
-        .then((response) => {
-          commit('setItemsServerSide', response.body)
-          resolve()
-        }, (error) => {
-          dispatch('openAlertBox', [
-            'alertError',
-            error.statusText,
-          ], { root: true })
-          reject(error)
-        })
-    })
-  },
   // item details
   getItem ({ commit, getters, dispatch }, [id]) {
     return new Promise((resolve, reject) => {

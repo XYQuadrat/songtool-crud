@@ -10,7 +10,6 @@
         :primary-key="primaryKey"
         :create-mode="createMode"
         :edit-mode="editMode"
-        :main-filter="mainFilter"
         :field-filters="fieldFilters"
         :refresh-button="refreshButton"
         ref="crudtable"
@@ -195,10 +194,6 @@ export default {
       type: Boolean,
       default: crud.editMode === undefined ? true : crud.editMode,
     },
-    mainFilter: {
-      type: Boolean,
-      default: crud.mainFilter === undefined ? true : crud.mainFilter,
-    },
     fieldFilters: {
       type: Boolean,
       default: crud.fieldFilters === undefined ? true : crud.fieldFilters,
@@ -220,7 +215,6 @@ export default {
         'tree': 'Tree',
       },
       componentModesMap: {
-        'server': 'ServerMode',
         'client': 'ClientMode',
       },
     }
@@ -243,13 +237,7 @@ export default {
       return this.itemsView && this.itemsView.type ? this.itemsView.type : this.defaultItemsViewType
     },
     itemsViewMode () {
-      let itemsViewMode
-      if (this.itemsView && this.itemsView.mode) {
-        itemsViewMode = this.itemsView.mode
-      } else if (this.mode) {
-        itemsViewMode = this.calcitemsViewMode(this.mode)
-      }
-      return itemsViewMode || this.defaultItemsViewMode
+      return this.defaultItemsViewMode
     },
     itemsViewConfig () {
       let config = {}
@@ -270,13 +258,6 @@ export default {
     ...mapActions('crud', ['runItemsViewRefreshing']),
     custom (name, item, index) {
       this.$parent[name](item, index)
-    },
-    calcitemsViewMode (mode) {
-      const modesMap = {
-        ServerSide: 'server',
-        ClientSide: 'client',
-      }
-      return modesMap[mode]
     },
     updateFilters (event) {
       this.$refs.crudtable.updateColumnFilters(event)

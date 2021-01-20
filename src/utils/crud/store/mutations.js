@@ -25,11 +25,6 @@ const mutations = {
   setLoadingStatus (state, val) {
     state.loading = val
   },
-  setItemsServerSide (state, data) {
-    state.items = data.data
-    state.totalItems = data.total
-    state.loading = false
-  },
   resetItems (state) {
     state.items = []
     state.currentItemId = null
@@ -45,9 +40,6 @@ const mutations = {
   ]) {
     state.moveItemRun = run
     state.moveItemDirection = direction
-  },
-  setNextItem (state, bool) {
-    state.previousItem = bool
   },
   // details item
   setDetailsLoader (state, bool) {

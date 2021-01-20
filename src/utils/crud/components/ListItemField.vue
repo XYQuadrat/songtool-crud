@@ -26,16 +26,14 @@ export default {
   },
   filters: {
     cropped (value) {
-      let rvalue
       const maxLength = crud.maxLength || 35
       if (typeof value === 'string' || value instanceof String) {
-        rvalue = value.length <= maxLength ? value : `${value.substring(0, maxLength - 3)}...`
+        return value.length <= maxLength ? value : `${value.substring(0, maxLength - 3)}...`
       } else if (Array.isArray(value) || value instanceof Array) {
-        rvalue = value.join(', ')
+        return value.join(', ')
       } else {
-        rvalue = value
+        return value
       }
-      return rvalue
     },
   },
 }

@@ -1,12 +1,4 @@
 export default {
-  filterModes: {
-    label: 'Modus',
-    options: {
-      like: 'Wie',
-      equals: 'Gleich',
-      list: 'Liste',
-    },
-  },
   noItemsSelected: 'Keine Items ausgewählt',
   confirm: 'Bist du sicher?',
   fields: {

@@ -9,7 +9,6 @@
       :details-title="detailsTitle"
       :refresh-button="refreshButton"
       :field-filters="fieldFilters"
-      :main-filter="mainFilter"
       :create-mode="createMode"
       :edit-mode="editMode"
       :edit-button="editButton"
@@ -32,7 +31,6 @@ export default {
       refreshButton: true,
       exportButton: true,
       fieldFilters: true,
-      mainFilter: true,
       createMode: true,
       editMode: true,
       editButton: true,

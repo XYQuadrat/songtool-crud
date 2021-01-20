@@ -43,7 +43,6 @@
 
       <!-- Search in table -->
       <span
-        v-if="mainFilter"
         class="crud-controls__search"
       >
         <v-text-field
@@ -59,7 +58,7 @@
 
       <!-- clear filters -->
       <crud-button
-        v-if="mainFilter || fieldFilters"
+        v-if="fieldFilters"
         large
         color="grey"
         @clicked="clearFilters()"
@@ -105,10 +104,8 @@ export default {
   props: [
     'createMode',
     'editMode',
-    'mainFilter',
     'fieldFilters',
     'refreshButton',
-    'initialSearch',
     'initialColumnFilters',
   ],
   data () {
@@ -116,24 +113,6 @@ export default {
       search: '',
       columnFilters: [],
     }
-  },
-  computed: {
-    filterModes () {
-      return [
-        {
-          name: 'like',
-          text: this.$t('global.datatable.filterModes.options.like'),
-        },
-        {
-          name: 'equals',
-          text: this.$t('global.datatable.filterModes.options.equals'),
-        },
-        {
-          name: 'list',
-          text: this.$t('global.datatable.filterModes.options.list'),
-        },
-      ]
-    },
   },
   methods: {
     create () {
@@ -147,12 +126,6 @@ export default {
     },
     updateSearch: _.debounce(function () {
       this.$emit('updateSearch', this.search)
-    }, 250),
-    updateColumnFilterMode (event, index) {
-      this.$emit('updateColumnFilterMode', event, index)
-    },
-    updateColumnFilterValue: _.debounce(function (event, index) {
-      this.$emit('updateColumnFilterValue', event, index)
     }, 250),
     updateColumnFilters (event) {
       this.$emit('updateColumnFilters', event)
@@ -168,7 +141,7 @@ export default {
     },
   },
   created () {
-    this.search = this.initialSearch
+    this.search = ''
     this.columnFilters = this.initialColumnFilters
   },
 }

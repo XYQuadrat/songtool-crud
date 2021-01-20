@@ -3,16 +3,12 @@
     <controls
       :create-mode="createMode"
       :edit-mode="editMode"
-      :main-filter="mainFilter"
       :field-filters="fieldFilters"
       :refresh-button="refreshButton"
-      :initialSearch="search"
       :initialColumnFilters="columnFilters"
       @create="create"
       @filter="filter"
       @refreshItemsView="refreshItemsView"
-      @updateColumnFilterMode="updateColumnFilterMode"
-      @updateColumnFilterValue="updateColumnFilterValue"
       @updateSearch="updateSearch"
       @clearFilters="clearFilters"
     >

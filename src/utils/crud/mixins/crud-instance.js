@@ -15,7 +15,6 @@ export default {
     'primaryKey',
     'createMode',
     'editMode',
-    'mainFilter',
     'fieldFilters',
     'refreshButton',
   ],
