@@ -39,12 +39,9 @@
             v-if="header.value==='actions'"
             :item="item"
             :edit-button='editButton'
-            :custom-buttons='customButtons'
             :edit-mode="editMode"
             @edit="edit"
-            @custom="custom"
             @destroy="destroy"
-            @doubleClick="resolveRowDoubleClick"
           />
           <span v-else>
             <slot
@@ -84,19 +81,19 @@ import CrudInstanceMixin from '../mixins/crud-instance'
 import ControlsHandlerMixin from '../mixins/controls-handler'
 import ItemsViewMixin from '../mixins/items-view'
 import CrudTableMixin from '../mixins/crud-table'
-import ClientModeFilteringMixin from '../mixins/table-client-mode-filtering'
+import FilteringMixin from '../mixins/table-filtering'
 import HelperMixin from '../mixins/table'
 
 import Controls from './Controls.vue'
 
 export default {
-  name: 'CrudTableClientMode',
+  name: 'CrudTable',
   mixins: [
     CrudInstanceMixin,
     ControlsHandlerMixin,
     ItemsViewMixin,
     CrudTableMixin,
-    ClientModeFilteringMixin,
+    FilteringMixin,
     HelperMixin,
   ],
   components: {

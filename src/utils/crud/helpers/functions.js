@@ -6,7 +6,7 @@ function parseIntIfNumber (str) {
   return !/\D/.test(str) ? parseInt(str) : str
 }
 
-function getItemsList (obj, fields, meta, primaryKey, customButtons) {
+function getItemsList (obj, fields, meta, primaryKey) {
   const rObj = {}
   rObj.meta = {
     id: obj[primaryKey],
@@ -16,41 +16,6 @@ function getItemsList (obj, fields, meta, primaryKey, customButtons) {
   for (const field in obj) {
     if (typeof obj[field] !== 'object' || obj[field] === null) {
       rObj.meta.item[field] = obj[field]
-    }
-  }
-  for (const button of customButtons) {
-    rObj.meta.buttons[button.name] = true
-    if (button.condition) {
-      let showButton = false
-      const colVal = obj[button.condition.field]
-      const reqValues = button.condition.values
-      let { operator } = button.condition
-      if (operator === '==') {
-        for (const reqVal of reqValues) {
-          if (colVal === reqVal) {
-            showButton = true
-          }
-        }
-      } else if (operator === '!=') {
-        for (const reqVal of reqValues) {
-          if (colVal !== reqVal) {
-            showButton = true
-          }
-        }
-      } else if (operator === '>') {
-        for (const reqVal of reqValues) {
-          if (colVal > reqVal) {
-            showButton = true
-          }
-        }
-      } else if (operator === '<') {
-        for (const reqVal of reqValues) {
-          if (colVal < reqVal) {
-            showButton = true
-          }
-        }
-      }
-      rObj.meta.buttons[button.name] = showButton
     }
   }
   for (const field of fields) {

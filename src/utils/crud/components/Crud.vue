@@ -1,10 +1,8 @@
 <template>
   <div style="position:relative;">
     <div>
-      <crud-table-client-mode
-        :itemsViewConfig="itemsViewConfig"
+      <crud-table
         :meta="meta"
-        :custom-buttons="customButtons"
         :edit-button="editButton"
         :table-fields="tableFields"
         :primary-key="primaryKey"
@@ -25,7 +23,7 @@
             :value="value"
           />
         </template>
-      </crud-table-client-mode>
+      </crud-table>
       <item-details
         :title="detailsTitle"
         :details-fields="detailsFields"
@@ -105,14 +103,14 @@ import {
   mapMutations,
   mapActions,
 } from 'vuex'
-import CrudTableClientMode from './CrudTableClientMode.vue'
+import CrudTable from './CrudTable.vue'
 import ItemDetails from './ItemDetails.vue'
 import ItemFilter from './ItemFilter.vue'
 import crud from '@/config/crud'
 
 export default {
   components: {
-    CrudTableClientMode,
+    CrudTable,
     ItemDetails,
     ItemFilter,
   },
@@ -136,14 +134,6 @@ export default {
       type: Boolean,
       default: crud.editButton || true,
     },
-    customHeaderButtons: {
-      type: Array,
-      default: () => [],
-    },
-    customButtons: {
-      type: Array,
-      default: () => [],
-    },
     meta: {
       type: Array,
       default: () => [],
@@ -156,35 +146,8 @@ export default {
       type: String,
       default: crud.primaryKey || 'id',
     },
-    mode: {
-      type: String,
-      validator (value) {
-        return [
-          'ClientSide',
-          'ServerSide',
-        ].indexOf(value) !== -1
-      },
-      default: 'ClientSide',
-    },
     itemsView: {
       type: Object,
-      validator (value) {
-        const isTypeCorrect = (field) => {
-          const fieldType = field ? field.type : 'table'
-          return [
-            'table',
-            'tree',
-          ].indexOf(fieldType) !== -1
-        }
-        const isModeCorrect = (field) => {
-          const fieldMode = field ? field.mode : 'client'
-          return [
-            'client',
-            'server',
-          ].indexOf(fieldMode) !== -1
-        }
-        return isTypeCorrect(value) && isModeCorrect(value)
-      },
     },
     createMode: {
       type: Boolean,
@@ -206,19 +169,6 @@ export default {
       default: 600,
     },
   },
-  data () {
-    return {
-      defaultItemsViewMode: 'client',
-      defaultItemsViewType: 'table',
-      componentTypesMap: {
-        'table': 'Table',
-        'tree': 'Tree',
-      },
-      componentModesMap: {
-        'client': 'ClientMode',
-      },
-    }
-  },
   computed: {
     ...mapState('crud', ['detailsLoading']),
     tableFields () {
@@ -233,19 +183,6 @@ export default {
       }
       return this.detailsFields
     },
-    itemsViewType () {
-      return this.itemsView && this.itemsView.type ? this.itemsView.type : this.defaultItemsViewType
-    },
-    itemsViewMode () {
-      return this.defaultItemsViewMode
-    },
-    itemsViewConfig () {
-      let config = {}
-      if (this.itemsViewType === 'tree' && this.itemsView) {
-        config = this.itemsView.config || {}
-      }
-      return config
-    },
   },
   methods: {
     ...mapMutations('crud', [
@@ -253,12 +190,8 @@ export default {
       'setPath',
       'setPaths',
       'setPage',
-      'setItemsViewType',
     ]),
     ...mapActions('crud', ['runItemsViewRefreshing']),
-    custom (name, item, index) {
-      this.$parent[name](item, index)
-    },
     updateFilters (event) {
       this.$refs.crudtable.updateColumnFilters(event)
     },
@@ -268,7 +201,6 @@ export default {
     this.setPath(this.path)
     this.setPaths(this.paths)
     this.setPage(this.pageTitle)
-    this.setItemsViewType(this.itemsViewType)
   },
 }
 

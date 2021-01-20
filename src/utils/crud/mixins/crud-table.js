@@ -23,22 +23,6 @@ export default {
         index,
       })
     },
-    resolveRowDoubleClick (item, index) {
-      if (this.editMode) {
-        let goToItemButton = false
-        for (const button of this.customButtons) {
-          if (button.name === 'goToItem') {
-            goToItemButton = true
-            break
-          }
-        }
-        if (goToItemButton) {
-          this.custom('goToItem', item, index)
-        } else {
-          this.edit(item.meta.id, index)
-        }
-      }
-    },
   },
   watch: {
     moveItemRun (val) {

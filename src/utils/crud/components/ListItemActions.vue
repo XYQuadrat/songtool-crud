@@ -31,13 +31,11 @@ export default {
   props: {
     item: {},
     editButton: {},
-    customButtons: {},
     dynamicTextModes: {},
     editMode: {},
   },
   methods: {
     edit (id) { this.$emit('edit', id) },
-    custom (name, item) { this.$emit('custom', name, item) },
     destroy (id) { this.$emit('destroy', id) },
   },
 }

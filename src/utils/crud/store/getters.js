@@ -10,14 +10,13 @@ const getters = {
     }
     return path
   },
-  itemsList: state => (fields, meta, primaryKey, customButtons) => {
+  itemsList: state => (fields, meta, primaryKey) => {
     const result = state.items.map(
       obj => getItemsList(
         obj,
         fields,
         meta,
-        primaryKey,
-        customButtons
+        primaryKey
       )
     )
     return result

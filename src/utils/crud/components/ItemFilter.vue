@@ -56,7 +56,6 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <slot name="custom-actions" />
           <v-btn color="black" text @click.native="close()">{{ $t('global.details.buttons.close') }}</v-btn>
           <v-btn
             color="green"
@@ -109,7 +108,6 @@ export default {
       'details',
       'path',
       'prefix',
-      'selectedIds',
     ]),
     itemData () {
       const result = {}

@@ -4,8 +4,6 @@ const state = {
   prefix: '',
   path: '',
   paths: {},
-  itemsViewType: undefined,
-  isItemsViewFlat: false,
   tableReady: false,
   detailsLoading: false,
   items: [],
@@ -25,7 +23,6 @@ const state = {
   filter: {
     show: false,
   },
-  selectedIds: [],
   // isItemsViewRefreshed
   isItemsViewRefreshed: false,
   item: {},

@@ -9,10 +9,8 @@ import actions from './actions'
 // crud
 import crud from '@/utils/crud/store/'
 
-import customModules from '@/config/store-modules'
-
 const mainModules = { crud }
-const modules = Object.assign(customModules, mainModules)
+const modules = Object.assign(mainModules)
 
 Vue.use(Vuex)
 

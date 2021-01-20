@@ -7,9 +7,7 @@ import {
 
 export default {
   props: [
-    'itemsViewConfig',
     'tableFields',
-    'customButtons',
     'editButton',
     'meta',
     'primaryKey',
@@ -18,11 +16,6 @@ export default {
     'fieldFilters',
     'refreshButton',
   ],
-  data () {
-    return {
-      selected: [],
-    }
-  },
   computed: {
     ...mapState('app', ['page']),
     ...mapState('crud', [
@@ -32,15 +25,11 @@ export default {
       'currentItemId',
     ]),
     ...mapGetters('crud', ['itemsList']),
-    selectedIds () {
-      return this.selected.map(item => item.meta.id)
-    },
     items () {
       return this.itemsList(
         this.tableFields,
         this.meta,
         this.primaryKey,
-        this.customButtons,
       )
     },
   },
@@ -86,10 +75,6 @@ export default {
           this.$t('global.alerts.deleteError'),
         ])
       }
-    },
-    custom (name, item) {
-      const index = this.getItemIndex(item.meta.id)
-      this.$parent.custom(name, item, index)
     },
   },
 }

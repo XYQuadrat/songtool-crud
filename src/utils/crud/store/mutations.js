@@ -12,11 +12,6 @@ const mutations = {
   setPage (state, value) {
     state.page = value
   },
-  // items view type
-  setItemsViewType (state, type) {
-    state.itemsViewType = type
-    state.isItemsViewFlat = type === 'table'
-  },
   // table items
   setItems (state, data) {
     state.items = data
