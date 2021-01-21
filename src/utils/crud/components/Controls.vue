@@ -20,12 +20,8 @@
         color="light-blue lighten-2"
         @clicked="create()"
         icon="add"
-        :tooltip="$t('global.datatable.add')"
+        :tooltip="'Neu'"
       />
-
-      <!-- slot -->
-      <slot name="left"></slot>
-
     </div>
 
     <!-- center side -->
@@ -38,7 +34,7 @@
         color="light-blue lighten-2"
         @clicked="filter()"
         icon="filter_list"
-        :tooltip="$t('global.datatable.searchByColumns')"
+        :tooltip="'Filtern'"
       />
 
       <!-- Search in table -->
@@ -47,7 +43,7 @@
       >
         <v-text-field
           v-model="search"
-          :label="$t('global.datatable.search')"
+          :label="'Suchen'"
           class="crud-controls__search-input"
           append-icon="search"
           single-line
@@ -63,12 +59,8 @@
         color="grey"
         @clicked="clearFilters()"
         icon="delete_sweep"
-        :tooltip="$t('global.datatable.buttons.clearFilters')"
+        :tooltip="'Filter aufheben'"
       />
-
-      <!-- slot -->
-      <slot name="center"></slot>
-
     </div>
 
     <!-- right side -->
@@ -81,12 +73,8 @@
         color="blue"
         @clicked="refreshItemsView()"
         icon="refresh"
-        :tooltip="$t('global.datatable.buttons.refreshTable')"
+        :tooltip="'Daten aktualisieren'"
       />
-
-      <!-- slot -->
-      <slot name="right"></slot>
-
     </div>
   </div>
 

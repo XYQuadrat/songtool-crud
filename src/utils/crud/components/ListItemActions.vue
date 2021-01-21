@@ -7,7 +7,7 @@
       small
       color="#FF8A65aa"
       icon="edit"
-      :tooltip="$t('global.datatable.buttons.edit')"
+      :tooltip="'Bearbeiten'"
       @clicked="edit(item.meta.id)"
     ></crud-button>
     <!-- hard delete -->
@@ -15,7 +15,7 @@
       small
       color="black"
       icon="delete"
-      :tooltip="$t('global.datatable.buttons.delete')"
+      :tooltip="'Löschen'"
       @clicked="destroy(item.meta.id)"
     ></crud-button>
   </span>

@@ -1,7 +1,5 @@
-import main from '@/config/main'
-
 const defaults = {
-  title: 'Vue CRUD',
+  title: 'Songtool',
   locales: [
     {
       name: 'en',
@@ -23,7 +21,7 @@ const defaults = {
   },
 }
 
-const params = Object.assign(defaults, main)
+const params = Object.assign(defaults)
 
 const state = {
   title: params.title,

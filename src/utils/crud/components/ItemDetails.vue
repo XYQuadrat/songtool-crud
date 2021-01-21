@@ -67,21 +67,21 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="black" text @click.native="close()">{{ $t('global.details.buttons.close') }}</v-btn>
+          <v-btn color="black" text @click.native="close()">{{ 'Schliessen' }}</v-btn>
           <v-btn
             :disabled="!details.formValid"
             v-if="details.action == 'create'"
             color="green"
             text
             @click="store()"
-          >{{ $t('global.details.buttons.create') }}</v-btn>
+          >{{ 'Erstellen' }}</v-btn>
           <v-btn
             :disabled="!details.formValid"
             v-else-if="details.action == 'edit'"
             color="orange"
             text
             @click="update()"
-          >{{ $t('global.details.buttons.modify') }}</v-btn>
+          >{{ 'Aktualisieren' }}</v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
@@ -233,8 +233,8 @@ export default {
       this.updateItem([
         this.details.id,
         this.itemData,
-        this.$t('global.alerts.updated'),
-        this.$t('global.alerts.updateError'),
+        'Aktualisiert',
+        'Fehler! Update nicht erfolgreich',
       ]).then((response) => {
         this.close()
       })
@@ -242,8 +242,8 @@ export default {
     store () {
       this.storeItem([
         this.itemData,
-        this.$t('global.alerts.stored'),
-        this.$t('global.alerts.storeError'),
+        'Gespeichert',
+        'Fehler! Speichern nicht erfolgreich',
       ]).then((response) => {
         this.close()
       })

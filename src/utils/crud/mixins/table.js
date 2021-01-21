@@ -24,17 +24,7 @@ export default {
       return headers
     },
     headers () {
-      const actionHeader = [
-        {
-          text: this.$t('global.datatable.fields.action'),
-          value: 'actions',
-          sortable: false,
-        },
-      ]
-      return [
-        ...actionHeader,
-        ...this.cleanHeaders,
-      ]
+      return [...this.cleanHeaders]
     },
     itemsPerPageOptions () {
       return [
@@ -48,7 +38,7 @@ export default {
     footerProps () {
       return {
         showFirstLastPage: true,
-        rowsPerPageText: this.$t('global.datatable.rowsPerPageText'),
+        itemsPerPageText: 'Zeilen pro Seite:',
         itemsPerPageOptions: this.itemsPerPageOptions,
       }
     },

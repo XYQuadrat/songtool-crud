@@ -40,9 +40,7 @@ export default {
         decimal: 'Text',
         time: 'Text',
         datetime: 'Text',
-        date: 'Date',
         textarea: 'Textarea',
-        file: 'File',
         select: 'Select',
         multiselect: 'Multiselect',
         checkbox: 'Checkbox',
@@ -66,9 +64,8 @@ export default {
       ].includes(this.fieldType)
     },
     rules () {
-      const self = this
       return {
-        required: (v) => !!v || self.$t('global.details.rules.required'),
+        required: (v) => !!v || 'Feld ist obligatorisch',
       }
     },
   },

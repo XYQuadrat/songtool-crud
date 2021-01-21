@@ -8,12 +8,8 @@ import './plugins/ie'
 import App from './App.vue'
 
 Vue.http.interceptors.push((request, next) => {
-  if (localStorage.getItem('token')) {
-    request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
-  }
   next(response => {
     if (response.status === 400 || response.status === 401 || response.status === 403) {
-      store.commit('auth/logout')
       router.push({ path: '/login' })
     }
   })

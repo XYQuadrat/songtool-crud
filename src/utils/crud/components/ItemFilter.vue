@@ -56,12 +56,12 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="black" text @click.native="close()">{{ $t('global.details.buttons.close') }}</v-btn>
+          <v-btn color="black" text @click.native="close()">{{ 'Schliessen' }}</v-btn>
           <v-btn
             color="green"
             text
             @click="applyFilter()"
-          >{{ $t('global.details.buttons.filter') }}</v-btn>
+          >{{ 'Filtern' }}</v-btn>
         </v-card-actions>
       </v-form>
     </v-card>

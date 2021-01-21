@@ -1,10 +1,10 @@
 <template>
   <span>
     <span>
-      {{ $t('global.datatable.records') }} {{ pageStart }} - {{ pageStop }} {{ $t('global.datatable.from') }} {{ itemsLength }}
+      {{ 'Einträge' }} {{ pageStart }} - {{ pageStop }} {{ 'von' }} {{ itemsLength }}
     </span>
     <span style="margin-left:30px;">
-      {{ $t('global.datatable.page') }}:
+      {{ 'Seite' }}:
       &nbsp;
       <span style="width:50px;display:inline-block !important;">
         <v-text-field

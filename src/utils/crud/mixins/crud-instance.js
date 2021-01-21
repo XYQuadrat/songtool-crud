@@ -68,11 +68,11 @@ export default {
       this.filterDialog()
     },
     destroy (id) {
-      if (confirm(this.$t('global.alerts.confirm'))) {
+      if (confirm('Bist du sicher?')) {
         this.deleteItem([
           id,
-          this.$t('global.alerts.deleted'),
-          this.$t('global.alerts.deleteError'),
+          'Gelöscht',
+          'Fehler! Löschen nicht erfolgreich',
         ])
       }
     },
