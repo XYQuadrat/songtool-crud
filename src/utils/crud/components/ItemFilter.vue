@@ -68,7 +68,6 @@
 </template>
 <script>
 import ItemDetailsField from './ItemDetailsField.vue'
-// import { fieldModifiers } from '@/utils/crud/helpers/functions'
 import {
   mapState,
   mapMutations,
