@@ -37,7 +37,7 @@ export default {
     }
   },
   created () {
-    this.detailsTitle = this.$t('detailsTitle')
+    this.detailsTitle = 'Lied'
   },
   computed: {
     fieldsInfo () {
@@ -45,19 +45,19 @@ export default {
         {
           type: 'input',
           column: 'songnumber',
-          text: this.$t('fields.songnumber'),
+          text: 'Nr.',
           name: 'songnumber',
         },
         {
           type: 'input',
           column: 'title',
-          text: this.$t('fields.title'),
+          text: 'Liedtitel',
           name: 'title',
         },
         {
           type: 'number',
           column: 'difficulty',
-          text: this.$t('fields.difficulty'),
+          text: 'Level',
           name: 'difficulty',
         },
         {
@@ -78,7 +78,7 @@ export default {
           },
           required: false,
           column: 'included_in',
-          text: this.$t('fields.included_in'),
+          text: 'Enthalten in / Liedform',
           name: 'included_in',
         },
         {
@@ -95,7 +95,7 @@ export default {
           required: false,
           stringId: true,
           column: 'kasualien',
-          text: this.$t('fields.kasualien'),
+          text: 'Kasualien',
           name: 'kasualien',
         },
         {
@@ -116,7 +116,7 @@ export default {
           },
           required: false,
           column: 'liturgie',
-          text: this.$t('fields.liturgie'),
+          text: 'Liturgie',
           name: 'liturgie',
         },
         {
@@ -138,7 +138,7 @@ export default {
           },
           required: false,
           column: 'kirchenjahr',
-          text: this.$t('fields.kirchenjahr'),
+          text: 'Kirchenjahr',
           name: 'kirchenjahr',
         },
         {
@@ -155,7 +155,7 @@ export default {
           },
           required: false,
           column: 'tageskreis',
-          text: this.$t('fields.tageskreis'),
+          text: 'Tageskreis',
           name: 'tageskreis',
         },
         {
@@ -176,7 +176,7 @@ export default {
           },
           required: false,
           column: 'lebenskreis',
-          text: this.$t('fields.lebenskreis'),
+          text: 'Lebenskreis',
           name: 'lebenskreis',
         },
         {
@@ -192,14 +192,14 @@ export default {
           },
           required: false,
           column: 'gd_in_der_welt',
-          text: this.$t('fields.gd_in_der_welt'),
+          text: 'GD in der Welt',
           name: 'gd_in_der_welt',
         },
         {
           type: 'textarea',
           required: false,
           column: 'liedtext',
-          text: this.$t('fields.liedtext'),
+          text: 'Liedtext',
           name: 'liedtext',
         },
       ]
@@ -208,26 +208,6 @@ export default {
   components: {
     Crud,
     AlertBox,
-  },
-  i18n: {
-    messages: {
-      en: {
-        detailsTitle: 'Lied',
-        fields: {
-          songnumber: 'Nr.',
-          title: 'Liedtitel',
-          difficulty: 'Level',
-          kasualien: 'Kasualien',
-          kirchenjahr: 'Kirchenjahr',
-          included_in: 'Enthalten in / Liedform',
-          liturgie: 'Liturgie',
-          tageskreis: 'Tageskreis',
-          lebenskreis: 'Lebenskreis',
-          liedtext: 'Liedtext',
-          gd_in_der_welt: 'GD in der Welt',
-        },
-      },
-    },
   },
 }
 </script>

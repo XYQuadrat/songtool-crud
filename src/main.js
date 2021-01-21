@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import i18n from './locales/index'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
@@ -16,7 +15,6 @@ Vue.http.interceptors.push((request, next) => {
 })
 
 new Vue({
-  i18n,
   router,
   store,
   vuetify,
