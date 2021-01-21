@@ -24,7 +24,17 @@ export default {
       return headers
     },
     headers () {
-      return [...this.cleanHeaders]
+      const actionHeader = [
+        {
+          text: 'Aktion',
+          value: 'actions',
+          sortable: false,
+        },
+      ]
+      return [
+        ...actionHeader,
+        ...this.cleanHeaders,
+      ]
     },
     itemsPerPageOptions () {
       return [
