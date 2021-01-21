@@ -22,19 +22,9 @@
             :key="i"
           >
             <v-layout row wrap>
-              <v-flex
-                v-if="details.action == 'multiedit' && field.show"
-                class="sm1"
-              >
-                <input
-                  type="checkbox"
-                  v-model="field.updateColumn"
-                >
-              </v-flex>
-              <v-flex :class="details.action == 'multiedit' ? 'sm11' : 'sm12'">
+              <v-flex :class="'sm12'">
                 <item-details-field
                   :field="field"
-                  :dynamic-field-type="dynamicFieldType(field.typeField)"
                   :field-value="field.value"
                   :reload="reload"
                   @valueChanged="valueChanged"
@@ -145,7 +135,6 @@ export default {
           result[field.column] = field.value !== undefined ? field.value : null
         }
       }
-      console.log(result)
       return result
     },
     detailsShow () {
@@ -166,8 +155,6 @@ export default {
         let show = true
         if (this.details.action === 'create') {
           show = field.create !== false
-        } else if (this.details.action === 'multiedit') {
-          show = field.multiedit !== false
         } else if (this.details.action === 'edit') {
           show = field.edit !== false
         }
@@ -180,22 +167,6 @@ export default {
             rField.value = fieldValue || defaultVal
           } else if (field.type === 'date') {
             rField.value = (fieldValue || '').substring(0, 10)
-          } else if (field.type === 'checkbox') {
-            if ([
-              1,
-              '1',
-              true,
-              'true',
-            ].includes(fieldValue)) {
-              rField.value = 1
-            } else if ([
-              0,
-              '0',
-              false,
-              'false',
-            ].includes(fieldValue)) {
-              rField.value = 0
-            }
           }
           if (field.apiObject) {
             if (field.apiObject.useFunctionsInDetails) {
@@ -208,16 +179,10 @@ export default {
               }
             }
           }
-        } else if (field.type === 'checkbox') {
-          rField.value = 0
         }
         return rField
       })
       this.$set(this, 'fields', result)
-    },
-    dynamicFieldType (fieldType) {
-      const refField = this.fields.find((field) => field.name === fieldType)
-      return refField ? refField.value : undefined
     },
     valueChanged (val, fieldColumn) {
       const field = this.fields[this.fields.findIndex(el => el.column === fieldColumn)]

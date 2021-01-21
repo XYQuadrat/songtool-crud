@@ -15,7 +15,6 @@
     </controls>
     <!-- Table -->
     <v-data-table
-      v-model="selected"
       :options.sync="pagination"
       :headers="headers"
       :items="filteredItems"

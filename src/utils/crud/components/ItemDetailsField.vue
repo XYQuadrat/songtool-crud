@@ -28,7 +28,6 @@ export default {
     'field',
     'fieldValue',
     'reload',
-    'dynamicFieldType',
   ],
   data () {
     return {
@@ -43,13 +42,12 @@ export default {
         textarea: 'Textarea',
         select: 'Select',
         multiselect: 'Multiselect',
-        checkbox: 'Checkbox',
       },
     }
   },
   computed: {
     fieldType () {
-      return this.field.type === 'dynamic' ? this.dynamicFieldType : this.field.type
+      return this.field.type
     },
     componentName () {
       return this.componentsMap[this.fieldType]

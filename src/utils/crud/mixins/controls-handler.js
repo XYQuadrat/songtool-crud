@@ -2,7 +2,6 @@ export default {
   data () {
     return {
       search: '',
-      selectedStatuses: [1],
       columnFilters: [],
     }
   },
@@ -22,10 +21,6 @@ export default {
     },
     updateSearch (search) {
       this.search = search
-      this.startSearching()
-    },
-    updateSelectedStatuses (statuses) {
-      this.selectedStatuses = statuses
       this.startSearching()
     },
   },

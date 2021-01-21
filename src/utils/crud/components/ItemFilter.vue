@@ -25,7 +25,6 @@
               <v-flex :class="'sm12'">
                 <item-details-field
                   :field="field"
-                  :dynamic-field-type="dynamicFieldType(field.typeField)"
                   :field-value="field.value"
                   :reload="reload"
                   @valueChanged="valueChanged"
@@ -141,33 +140,11 @@ export default {
             rField.value = fieldValue || defaultVal
           } else if (field.type === 'date') {
             rField.value = (fieldValue || '').substring(0, 10)
-          } else if (field.type === 'checkbox') {
-            if ([
-              1,
-              '1',
-              true,
-              'true',
-            ].includes(fieldValue)) {
-              rField.value = 1
-            } else if ([
-              0,
-              '0',
-              false,
-              'false',
-            ].includes(fieldValue)) {
-              rField.value = 0
-            }
           }
-        } else if (field.type === 'checkbox') {
-          rField.value = 0
         }
         return rField
       })
       this.$set(this, 'fields', result)
-    },
-    dynamicFieldType (fieldType) {
-      const refField = this.fields.find((field) => field.name === fieldType)
-      return refField ? refField.value : undefined
     },
     valueChanged (val, fieldColumn) {
       const field = this.fields[this.fields.findIndex(el => el.column === fieldColumn)]

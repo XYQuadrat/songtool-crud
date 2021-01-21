@@ -73,9 +73,4 @@ export default {
     },
     startSearching () {},
   },
-  watch: {
-    selectedStatuses () {
-      this.pagination.page = 1
-    },
-  },
 }
