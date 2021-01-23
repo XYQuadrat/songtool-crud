@@ -7,7 +7,7 @@ export default {
     ListItemField,
   },
   methods: {
-    setColumnTextModes (props) {
+    setColumnTextModes () {
       const columnTextModes = {}
       for (const field of this.tableFields) {
         let textMode = 'cropped'
@@ -18,7 +18,7 @@ export default {
       }
       return columnTextModes
     },
-    textMode (item, key) {
+    textMode (key) {
       const field = this.tableFields.find((field) => field.name === key) || {}
       let textMode = field.textMode || 'cropped'
       return textMode

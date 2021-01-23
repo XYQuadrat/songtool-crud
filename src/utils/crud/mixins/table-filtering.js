@@ -1,18 +1,22 @@
+import {
+  mapState,
+} from 'vuex'
 
 export default {
   computed: {
+    ...mapState('crud', ['columnFilters']),
     filteredItems () {
       let items = this.items
 
       var { columnFilters } = this
-      columnFilters = columnFilters.filter(e => !!e.value || (e instanceof Array && e.length > 0))
+      var filters = columnFilters.filter(e => !!e.value || (e instanceof Array && e.length > 0))
 
       items = items.filter((item) => {
-        for (let i = 0; i < columnFilters.length; i++) {
+        for (let i = 0; i < filters.length; i++) {
           let matchesFilter = false
-          const colName = columnFilters[i].name
+          const colName = filters[i].name
           let field = item[colName]
-          const keys = columnFilters[i].value.toString().split(',').map(item => item.trim().toLowerCase())
+          const keys = filters[i].value.toString().split(',').map(item => item.trim().toLowerCase())
           for (var j = 0; j < keys.length; ++j) {
             if (typeof field === 'string' || field instanceof String || typeof field === 'number') {
               field = field.toString().toLowerCase()

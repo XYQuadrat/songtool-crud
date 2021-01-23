@@ -7,10 +7,7 @@
       :page-title="pageTitle"
       :fields-info="fieldsInfo"
       :details-title="detailsTitle"
-      :refresh-button="refreshButton"
-      :field-filters="fieldFilters"
       :create-mode="createMode"
-      :edit-mode="editMode"
       :edit-button="editButton"
     ></crud>
     <alert-box></alert-box>
@@ -28,11 +25,7 @@ export default {
       path: 'songs',
       pageTitle: 'crud.songs',
       detailsTitle: '',
-      refreshButton: true,
-      exportButton: true,
-      fieldFilters: true,
       createMode: true,
-      editMode: true,
       editButton: true,
     }
   },

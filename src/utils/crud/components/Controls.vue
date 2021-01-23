@@ -29,7 +29,6 @@
 
       <!-- Search by fields -->
       <crud-button
-        v-if="fieldFilters"
         x-large
         color="light-blue lighten-2"
         @clicked="filter()"
@@ -54,7 +53,6 @@
 
       <!-- clear filters -->
       <crud-button
-        v-if="fieldFilters"
         large
         color="grey"
         @clicked="clearFilters()"
@@ -68,7 +66,6 @@
 
       <!-- Refresh table -->
       <crud-button
-        v-if="refreshButton"
         large
         color="blue"
         @clicked="refreshItemsView()"
@@ -83,26 +80,23 @@
 <script>
 import CrudButton from './Button.vue'
 import _ from 'lodash'
+import {
+  mapMutations,
+} from 'vuex'
 
 export default {
   name: 'Controls',
   components: {
     CrudButton,
   },
-  props: [
-    'createMode',
-    'editMode',
-    'fieldFilters',
-    'refreshButton',
-    'initialColumnFilters',
-  ],
+  props: ['createMode'],
   data () {
     return {
       search: '',
-      columnFilters: [],
     }
   },
   methods: {
+    ...mapMutations('crud', ['resetFilters']),
     create () {
       this.$emit('create')
     },
@@ -116,21 +110,17 @@ export default {
       this.$emit('updateSearch', this.search)
     }, 250),
     updateColumnFilters (event) {
-      this.$emit('updateColumnFilters', event)
+      this.$emit('updateColumnFilters')
     },
     clearFilters () {
       this.search = ''
       this.updateSearch()
-      for (const column of this.columnFilters) {
-        column.value = ''
-      }
-      this.updateColumnFilters()
+      this.resetFilters()
       this.$emit('clearFilters')
     },
   },
   created () {
     this.search = ''
-    this.columnFilters = this.initialColumnFilters
   },
 }
 </script>

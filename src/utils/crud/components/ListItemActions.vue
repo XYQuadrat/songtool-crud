@@ -3,7 +3,7 @@
   <span style="white-space: nowrap">
     <!-- edit record -->
     <crud-button
-      v-if="editButton && editMode"
+      v-if="editButton"
       small
       color="#FF8A65aa"
       icon="edit"
@@ -31,7 +31,6 @@ export default {
   props: {
     item: {},
     editButton: {},
-    editMode: {},
   },
   methods: {
     edit (id) { this.$emit('edit', id) },

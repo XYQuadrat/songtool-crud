@@ -64,6 +64,34 @@ const mutations = {
   filterDialog (state) {
     state.filter.show = true
   },
+  initializeFilters (state, tableFields) {
+    state.columnFilters = tableFields.map((field) => {
+      const item = {}
+      item.type = field.type
+      item.list = field.list
+      item.text = field.text
+      item.name = field.name.toLowerCase()
+      item.column = field.column
+      item.value = undefined
+      return item
+    })
+  },
+  setFilters (state, data) {
+    let i = 0
+    for (let key in data) {
+      if (data[key] != null) {
+        state.columnFilters[i].value = data[key]
+      }
+      ++i
+    }
+  },
+  resetFilters (state) {
+    for (const column of state.columnFilters) {
+      if (column != null) {
+        column.value = ''
+      }
+    }
+  },
 }
 
 export default mutations

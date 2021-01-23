@@ -12,9 +12,6 @@ export default {
     'meta',
     'primaryKey',
     'createMode',
-    'editMode',
-    'fieldFilters',
-    'refreshButton',
   ],
   computed: {
     ...mapState('app', ['page']),

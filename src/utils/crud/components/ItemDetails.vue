@@ -79,7 +79,6 @@
 </template>
 <script>
 import ItemDetailsField from './ItemDetailsField.vue'
-import { fieldModifiers } from '@/utils/crud/helpers/functions'
 import {
   mapState,
   mapMutations,
@@ -167,17 +166,6 @@ export default {
             rField.value = fieldValue || defaultVal
           } else if (field.type === 'date') {
             rField.value = (fieldValue || '').substring(0, 10)
-          }
-          if (field.apiObject) {
-            if (field.apiObject.useFunctionsInDetails) {
-              const functions = field.apiObject.functions || []
-              const availableFunctions = fieldModifiers
-
-              for (let i = 0; i < functions.length; i++) {
-                const functionName = functions[i]
-                rField.value = availableFunctions[functionName](rField.value)
-              }
-            }
           }
         }
         return rField

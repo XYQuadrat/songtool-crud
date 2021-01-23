@@ -67,11 +67,11 @@
   </v-dialog>
 </template>
 <script>
+
 import ItemDetailsField from './ItemDetailsField.vue'
 import {
   mapState,
   mapMutations,
-  mapActions,
 } from 'vuex'
 
 export default {
@@ -97,16 +97,10 @@ export default {
     },
   },
   mounted () {
-    this.resetItem()
     this.setFields()
   },
   computed: {
-    ...mapState('crud', [
-      'filter',
-      'details',
-      'path',
-      'prefix',
-    ]),
+    ...mapState('crud', ['filter']),
     itemData () {
       const result = {}
       for (const field of this.fields) {
@@ -125,20 +119,18 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['openAlertBox']),
-    ...mapMutations('crud', ['resetItem']),
+    ...mapState('crud', ['columnFilters']),
+    ...mapMutations('crud', ['setFilters']),
     setFields () {
-      const result = this.detailsFields.map((field) => {
+      const result = Object.values(this.$store.state.crud.columnFilters).map((field) => {
         const rField = field
         rField.show = true
         rField.value = field.value
         if (typeof rField.value !== 'undefined') {
           const fieldValue = field.value
           if (field.type === 'select' || field.type === 'multiselect') {
-            const defaultVal = field.list.default || field.required ? 1 : []
+            const defaultVal = []
             rField.value = fieldValue || defaultVal
-          } else if (field.type === 'date') {
-            rField.value = (fieldValue || '').substring(0, 10)
           }
         }
         return rField
@@ -156,7 +148,8 @@ export default {
       this.filter.show = false
     },
     applyFilter () {
-      this.$emit('controlUpdateFilters', this.itemData)
+      this.setFilters(this.itemData)
+      this.$emit('updateFilters')
       this.close()
     },
   },

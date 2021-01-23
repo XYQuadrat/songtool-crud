@@ -23,6 +23,7 @@ const getters = {
   },
   // extended details
   item: state => state.item,
+  columnFilters: state => state.columnFilters,
 }
 
 export default getters

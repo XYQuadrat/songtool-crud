@@ -2,10 +2,6 @@
   <v-card flat>
     <controls
       :create-mode="createMode"
-      :edit-mode="editMode"
-      :field-filters="fieldFilters"
-      :refresh-button="refreshButton"
-      :initialColumnFilters="columnFilters"
       @create="create"
       @filter="filter"
       @refreshItemsView="refreshItemsView"
@@ -38,7 +34,6 @@
             v-if="header.value==='actions'"
             :item="item"
             :edit-button='editButton'
-            :edit-mode="editMode"
             @edit="edit"
             @destroy="destroy"
           />

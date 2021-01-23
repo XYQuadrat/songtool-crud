@@ -23,6 +23,7 @@ const state = {
   filter: {
     show: false,
   },
+  columnFilters: [],
   // isItemsViewRefreshed
   isItemsViewRefreshed: false,
   item: {},

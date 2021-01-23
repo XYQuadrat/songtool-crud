@@ -7,9 +7,6 @@
         :table-fields="tableFields"
         :primary-key="primaryKey"
         :create-mode="createMode"
-        :edit-mode="editMode"
-        :field-filters="fieldFilters"
-        :refresh-button="refreshButton"
         ref="crudtable"
       >
         <!-- slots for fields -->
@@ -75,7 +72,7 @@
         :title="detailsTitle"
         :details-fields="filterFields"
         :width="itemDetailsWidth"
-        @controlUpdateFilters="updateFilters($event)">
+        @updateFilters="updateFilters()">
       </item-filter>
     </div>
     <div class="details-loader-container">
@@ -138,39 +135,23 @@ export default {
       type: Array,
       default: () => [],
     },
-    watchForCreation: {
-      type: Boolean,
-      default: false,
-    },
     primaryKey: {
       type: String,
       default: crud.primaryKey || 'id',
     },
-    itemsView: {
-      type: Object,
-    },
     createMode: {
       type: Boolean,
       default: crud.createMode === undefined ? true : crud.createMode,
-    },
-    editMode: {
-      type: Boolean,
-      default: crud.editMode === undefined ? true : crud.editMode,
-    },
-    fieldFilters: {
-      type: Boolean,
-      default: crud.fieldFilters === undefined ? true : crud.fieldFilters,
-    },
-    refreshButton: {
-      type: Boolean,
-      default: crud.refreshButton === undefined ? true : crud.refreshButton,
     },
     itemDetailsWidth: {
       default: 600,
     },
   },
   computed: {
-    ...mapState('crud', ['detailsLoading']),
+    ...mapState('crud', [
+      'detailsLoading',
+      'columnFilters',
+    ]),
     tableFields () {
       return this.fieldsInfo.filter(field => field.table !== false && field.type !== 'divider')
     },
@@ -178,10 +159,7 @@ export default {
       return this.fieldsInfo.filter(field => field.details !== false && field.type !== 'divider')
     },
     filterFields () {
-      if (this.$refs.crudtable != null) {
-        return this.$refs.crudtable.columnFilters
-      }
-      return this.detailsFields
+      return this.fieldsInfo.filter(field => field.details !== false && field.type !== 'divider')
     },
   },
   methods: {
@@ -193,7 +171,7 @@ export default {
     ]),
     ...mapActions('crud', ['runItemsViewRefreshing']),
     updateFilters (event) {
-      this.$refs.crudtable.updateColumnFilters(event)
+      this.$refs.crudtable.updateColumnFilters()
     },
   },
   created () {
