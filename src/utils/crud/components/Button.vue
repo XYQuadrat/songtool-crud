@@ -1,29 +1,22 @@
 <template>
-  <v-tooltip top>
-    <template v-slot:activator="{ on }">
-      <v-btn
-        :class="noMargin ? '' : 'mr-1'"
-        :icon="!dark"
-        :fab="dark"
-        :dark="dark"
-        :x-small="xSmall"
-        :small="small"
-        :large="large"
-        :x-large="xLarge"
-        :color="color"
-        :loading="loading"
-        v-on="on"
-        @click="emitClick()"
-      >
-        <v-icon
-          :dark="dark"
-          v-if="icon"
-        >{{ icon }}</v-icon>
-        <template v-if="text">{{ text }}</template>
-      </v-btn>
-    </template>
-    <span>{{ tooltip }}</span>
-  </v-tooltip>
+  <v-btn
+    :class="noMargin ? '' : 'mr-1'"
+    :icon="!dark"
+    :fab="dark"
+    :dark="dark"
+    :x-small="xSmall"
+    :small="small"
+    :large="large"
+    :x-large="xLarge"
+    :color="color"
+    :loading="loading"
+    @click="emitClick()"
+  >
+    <v-icon
+      :dark="dark"
+      v-if="icon"
+    >{{ icon }}</v-icon>
+  </v-btn>
 </template>
 
 <script>
@@ -53,13 +46,7 @@ export default {
       type: String,
       default: 'primary',
     },
-    tooltip: {
-      type: String,
-    },
     icon: {
-      type: String,
-    },
-    text: {
       type: String,
     },
     disabled: {

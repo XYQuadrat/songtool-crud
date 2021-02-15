@@ -18,11 +18,11 @@
       :no-results-text="'Keine passenden Resultate gefunden'"
       :no-data-text="'Keine Daten verfügbar'"
       :footer-props="footerProps"
-      :items-per-page="20"
+      :items-per-page="50"
       :loading="loading"
+      @click:row="rowClicked"
       sort-by="songnumber"
       light
-      multi-sort
       dense
     >
       <template
@@ -45,7 +45,6 @@
             >
               <list-item-field
                 :value="item[header.value]"
-                :text-mode="textMode(item, header.value)"
               />
             </slot>
           </span>
@@ -113,6 +112,9 @@ export default {
       const newItemId = this.filteredItems[realIndex].meta.id
       this.setCurrentItem({ id: newItemId, index })
       this.getItemDetails([newItemId])
+    },
+    rowClicked (item, value) {
+      this.edit(item.meta.id)
     },
   },
   created () {

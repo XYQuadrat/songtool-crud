@@ -1,0 +1,9 @@
+[X] Suche nach mehreren Leveln gleichzeitig, wie bereits besprochen.  
+[X] Könntest du zudem aus «Level» trotzdem «Anspruchsgrad» machen? Der Begriff «Level» scheint irgendwie wertend rüberzukommen – und die Angaben beziehen sich auf eine Liste aus dem Jahr 2006 mit dem Titel: «Schwierigkeit und Anspruchsgrad der Lieder blabla…» - denke wäre wohl verständlicher für alle alten Hasen 😉  
+[X] Spalte «Aktion» braucht es eigentlich nicht. Schön wäre, wenn der Text erscheinen würde, wenn man auf ein Lied klickt… dann bräuchte es auch die Spalte «Liedtext» nicht mehr – die deckt sich ja grundsätzlich mit der Spalte «Liedtitel»  
+[X] Die Spalte «Liedtitel» könntest du noch in «Titel» umbenennen – einige Nummern sind nicht klassische Lieder, sondern Liedrufe oder gregorianische Choräle oder so… ist daher nicht ganz präzis…  
+[ ] Die Spalte «Lebenskreis» ist sehr breit – zumindest bei mir?! Kannst du die etwas schmaler machen .  
+[X] Zentrales Feld oben «Suchen»: Könntest du dort stattdessen reinschreiben: «Suche: Volltext, Autor, …»  
+[X] Oben rechts – der Button «Daten aktualisieren» - braucht es den? Ansonsten könntest du den dann auch noch rausnehmen…  
+[X] Ganz unten: Zeile pro Seite. Kannst du das einstellen, dass dort mindestens 100, besser sogar einfach alle Ergebnisse angezeigt werden? Das Tool ist so schnell – denke von der Leistung her sollte das problemlos möglich sein…  
+[X] Falls ohne relevanten Aufwand möglich: Benutzerfreundlicher wäre es, wenn die Auswahlfenster beim Filtern nach oben aufploppen würden und nicht nach unten – normalerweise wird man die Kriterien von oben nach unten eintragen und so muss man nun immer erst das vorher aufgeploppte Fenster zu klicken bis man das nächste öffnen kann. Es geht auch so. Problemlos. Aber wenn du nur ein Häckchen anders setzten musst um es zu ändern: Gerne 😊  

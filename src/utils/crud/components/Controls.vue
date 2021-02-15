@@ -20,7 +20,6 @@
         color="light-blue lighten-2"
         @clicked="create()"
         icon="add"
-        :tooltip="'Neu'"
       />
     </div>
 
@@ -33,7 +32,6 @@
         color="light-blue lighten-2"
         @clicked="filter()"
         icon="filter_list"
-        :tooltip="'Filtern'"
       />
 
       <!-- Search in table -->
@@ -42,7 +40,7 @@
       >
         <v-text-field
           v-model="search"
-          :label="'Suchen'"
+          :label="'Suche: Volltext, Autor, …'"
           class="crud-controls__search-input"
           append-icon="search"
           single-line
@@ -57,21 +55,12 @@
         color="grey"
         @clicked="clearFilters()"
         icon="delete_sweep"
-        :tooltip="'Filter aufheben'"
       />
     </div>
 
     <!-- right side -->
     <div>
 
-      <!-- Refresh table -->
-      <crud-button
-        large
-        color="blue"
-        @clicked="refreshItemsView()"
-        icon="refresh"
-        :tooltip="'Daten aktualisieren'"
-      />
     </div>
   </div>
 

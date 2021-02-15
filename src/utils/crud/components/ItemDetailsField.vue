@@ -15,7 +15,7 @@
         :field="field"
         :reload="reload"
         :rules="fieldRules(field)"
-        :class="{'field--limited-width': isWidthLimited}"
+        :class="{'field--limited-width': true}"
       />
     </slot>
   </div>
