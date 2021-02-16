@@ -8,6 +8,7 @@ import {
 export default {
   props: [
     'tableFields',
+    'detailsFields',
     'editButton',
     'meta',
     'primaryKey',
@@ -24,7 +25,7 @@ export default {
     ...mapGetters('crud', ['itemsList']),
     items () {
       return this.itemsList(
-        this.tableFields,
+        this.detailsFields,
         this.meta,
         this.primaryKey,
       )

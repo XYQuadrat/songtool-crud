@@ -5,6 +5,7 @@
         :meta="meta"
         :edit-button="editButton"
         :table-fields="tableFields"
+        :details-fields="detailsFields"
         :primary-key="primaryKey"
         :create-mode="createMode"
         ref="crudtable"
