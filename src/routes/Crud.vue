@@ -152,7 +152,7 @@ export default {
               { name: 'Himmelfahrt', label: 'Himmelfahrt' },
               { name: 'Pfingsten', label: 'Pfingsten' },
               { name: 'Dank-, Buss- und Bettag', label: 'Dank-, Buss- und Bettag' },
-              { name: 'Schöpfung', label: 'Schöpfung' },
+              { name: 'Schöpfung, Jahreszeiten, Erntedank', label: 'Schöpfung, Jahreszeiten, Erntedank' },
             ],
           },
           required: false,
