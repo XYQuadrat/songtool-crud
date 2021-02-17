@@ -15,7 +15,7 @@
         >Details</v-card-title>
       </slot>
       <v-form v-model="details.formValid">
-        <v-card-text style="padding:25px !important;" class="details-list">
+        <v-card-text style="padding:10px 25px 15px !important;" class="details-list">
           <slot name="over-fields" />
           <div
             v-for="(field, i) in fields"

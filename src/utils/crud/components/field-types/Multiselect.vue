@@ -9,7 +9,7 @@
     :search-input.sync="search"
     :label="field.text"
     :disabled="field.disabled"
-    menu-props="bottom"
+    :menu-props="{ top: true, maxHeight: 500 }"
     class="field--limited-width"
     item-disabled="itemDisabled"
     hide-details
