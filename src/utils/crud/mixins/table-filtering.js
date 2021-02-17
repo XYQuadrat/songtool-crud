@@ -20,7 +20,9 @@ export default {
           for (var j = 0; j < keys.length; ++j) {
             if (typeof field === 'string' || field instanceof String || typeof field === 'number') {
               field = field.toString().toLowerCase()
-              if (field.includes(keys[j])) {
+              if (colName === 'songnumber') {
+                matchesFilter = field === keys[j]
+              } else if (field.includes(keys[j])) {
                 matchesFilter = true
               }
             } else if (Array.isArray(field)) {
