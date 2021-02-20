@@ -29,9 +29,9 @@
       <!-- Search by fields -->
       <crud-button
         x-large
-        color="light-blue lighten-2"
+        color="blue"
         @clicked="filter()"
-        icon="filter_list"
+        icon="filter_list_alt"
       />
 
       <!-- Search in table -->

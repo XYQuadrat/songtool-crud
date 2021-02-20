@@ -38,7 +38,7 @@ export default {
         {
           type: 'input',
           column: 'songnumber',
-          text: 'Nr.',
+          text: 'Nr. im RG',
           name: 'songnumber',
         },
         {
@@ -50,29 +50,29 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'difficulty',
+            value: 'name',
             text: 'label',
             data: [
-              { name: '1', label: '1' },
-              { name: '2', label: '2' },
-              { name: '3', label: '3' },
-              { name: '4', label: '4' },
-              { name: '5', label: '5' },
+              { name: '1', label: '1 - Problemlos singbar' },
+              { name: '2', label: '2 - Gut singbar' },
+              { name: '3', label: '3 - Setzt gut singende Gemeinde voraus' },
+              { name: '4', label: '4 - Einüben / Singleitung nötig' },
+              { name: '5', label: '5 - Gründlich üben / Vorsinggruppe' },
             ],
           },
           column: 'difficulty',
-          text: 'Anspruchsgrad',
+          text: 'Anspruchsgrad 1-5',
           name: 'difficulty',
         },
         {
           type: 'multiselect',
           list: {
-            value: 'included_in',
+            value: 'name',
             text: 'label',
             data: [
-              { name: 'Blasmusikheft', label: 'Blasmusikheft' },
-              { name: 'Katholisches Gesangsbuch', label: 'Katholisches Gesangsbuch' },
-              { name: 'Christkatholisches Gesangsbuch', label: 'Christkatholisches Gesangsbuch' },
+              { name: 'BMH', label: 'Blasmusikheft' },
+              { name: 'CG', label: 'Christkatholisches Gesangbuch' },
+              { name: 'KG', label: 'Katholisches Gesangbuch' },
             ],
           },
           required: false,
@@ -83,15 +83,15 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'liedform',
+            value: 'name',
             text: 'label',
             data: [
-              { name: 'Biblischer Gesang', label: 'Biblischer Gesang' },
+              { name: 'Biblischer Gesang', label: 'Biblischer Gesang (Einzeltext als Grundlage)' },
               { name: 'Dialekt', label: 'Dialekt' },
+              { name: 'Genfer Psalter', label: 'Genfer Psalter' },
               { name: 'Kanon', label: 'Kanon' },
               { name: 'Leitvers', label: 'Leitvers' },
               { name: 'Liedruf', label: 'Liedruf' },
-              { name: 'Genfer Psalter', label: 'Genfer Psalter' },
               { name: 'Taizé', label: 'Taizé' },
             ],
           },
@@ -103,12 +103,12 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'kasualien',
+            value: 'name',
             text: 'label',
             data: [
               { name: 'Taufe', label: 'Taufe' },
-              { name: 'Trauung', label: 'Trauung' },
               { name: 'Trauerfeier', label: 'Trauerfeier' },
+              { name: 'Trauung', label: 'Trauung' },
             ],
           },
           required: false,
@@ -120,13 +120,13 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'liturgie',
+            value: 'name',
             text: 'label',
             data: [
-              { name: 'Eröffnung', label: 'Eröffnung' },
-              { name: 'Anrufung', label: 'Anrufung' },
-              { name: 'Anbetung', label: 'Anbetung' },
-              { name: 'Verkündigung', label: 'Verkündigung' },
+              { name: 'Eröffnung', label: 'Eröffnung und Sammlung' },
+              { name: 'Anrufung', label: 'Anrufung, Schuldbekenntnis und Vergebung' },
+              { name: 'Anbetung', label: 'Anbetung und Lob' },
+              { name: 'Verkündigung', label: 'Verkündigung, Gottes Wort' },
               { name: 'Glaubensbekenntnis', label: 'Glaubensbekenntnis' },
               { name: 'Bitte/Fürbitte', label: 'Bitte/Fürbitte' },
               { name: 'Abendmahl', label: 'Abendmahl' },
@@ -141,11 +141,11 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'kirchenjahr',
+            value: 'name',
             text: 'label',
             data: [
               { name: 'Advent', label: 'Advent' },
-              { name: 'Weihnachten', label: 'Weihnachten' },
+              { name: 'Weihnachten', label: 'Weihnachten und Epiphanias' },
               { name: 'Jahreswechsel', label: 'Jahreswechsel' },
               { name: 'Passion', label: 'Passion' },
               { name: 'Ostern', label: 'Ostern' },
@@ -163,7 +163,7 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'tageskreis',
+            value: 'name',
             text: 'label',
             data: [
               { name: 'Morgen', label: 'Morgen' },
@@ -180,7 +180,7 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'lebenskreis',
+            value: 'name',
             text: 'label',
             data: [
               { name: 'Glaube', label: 'Glaube' },
@@ -201,12 +201,12 @@ export default {
         {
           type: 'multiselect',
           list: {
-            value: 'gd_in_der_welt',
+            value: 'name',
             text: 'label',
             data: [
-              { name: 'weltw. Gemeinschaft', label: 'weltw. Gemeinschaft' },
+              { name: 'weltw. Gemeinschaft', label: 'Kirche in weltweiter Gemeinschaft' },
               { name: 'Leben/Handeln aus Glauben', label: 'Leben/Handeln aus Glauben' },
-              { name: 'Reich Gottes', label: 'Reich Gottes' },
+              { name: 'Reich Gottes', label: 'Hoffnung auf das Reich Gottes' },
             ],
           },
           required: false,

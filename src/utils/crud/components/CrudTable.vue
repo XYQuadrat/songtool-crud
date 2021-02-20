@@ -18,7 +18,7 @@
       :no-results-text="'Keine passenden Resultate gefunden'"
       :no-data-text="'Keine Daten verfügbar'"
       :footer-props="footerProps"
-      :items-per-page="50"
+      :items-per-page="100"
       :loading="loading"
       @click:row="rowClicked"
       sort-by="songnumber"

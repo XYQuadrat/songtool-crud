@@ -14,6 +14,7 @@
     item-disabled="itemDisabled"
     hide-details
     multiple
+    chips
     @change="onChange()"
   >
     <template

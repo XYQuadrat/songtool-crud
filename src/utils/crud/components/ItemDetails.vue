@@ -15,15 +15,54 @@
         >Details</v-card-title>
       </slot>
       <v-form v-model="details.formValid">
-        <v-card-text style="padding:10px 25px 15px !important;" class="details-list">
-          <slot name="over-fields" />
+        <v-layout>
+          <v-flex>
+            <v-card-text style="padding:10px 25px 15px !important;" class="details-list">
+              <slot name="over-fields" />
+              <div
+                v-for="(field, i) in fields.slice(0,-1)"
+                :key="i"
+              >
+                <v-layout row wrap>
+                  <v-flex :class="'sm12'">
+                    <item-details-field
+                      :field="field"
+                      :field-value="field.value"
+                      :reload="reload"
+                      @valueChanged="valueChanged"
+                    >
+                      <template
+                        #default="{
+                          value,
+                          fieldType,
+                          field,
+                          reload,
+                          rules,
+                          changeValue,
+                        }"
+                      >
+                        <slot
+                          :name="`field:${field.name}`"
+                          :value="value"
+                          :field-type="fieldType"
+                          :field="field"
+                          :reload="reload"
+                          :rules="rules"
+                          :change-value="changeValue"
+                        />
+                      </template>
+                    </item-details-field>
+                  </v-flex>
+                </v-layout>
+              </div>
+            </v-card-text>
+          </v-flex>
+          <v-flex md8>
           <div
-            v-for="(field, i) in fields"
+            v-for="(field, i) in fields.slice(-1)"
             :key="i"
           >
-            <v-layout row wrap>
-              <v-flex :class="'sm12'">
-                <item-details-field
+            <item-details-field
                   :field="field"
                   :field-value="field.value"
                   :reload="reload"
@@ -50,11 +89,10 @@
                     />
                   </template>
                 </item-details-field>
-              </v-flex>
-            </v-layout>
           </div>
+          </v-flex>
+        </v-layout>
           <slot name="under-fields" />
-        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="black" text @click.native="close()">{{ 'Schliessen' }}</v-btn>

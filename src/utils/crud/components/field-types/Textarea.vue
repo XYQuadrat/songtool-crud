@@ -45,3 +45,9 @@ export default {
   },
 }
 </script>
+
+<style>
+textarea {
+  height: 49.1vh;
+}
+</style>

@@ -71,7 +71,7 @@
       </item-details>
       <item-filter
         :title="detailsTitle"
-        :width="itemDetailsWidth"
+        :width="itemDetailsWidth * 0.6"
         @updateFilters="updateFilters()">
       </item-filter>
     </div>
@@ -144,7 +144,7 @@ export default {
       default: crud.createMode === undefined ? true : crud.createMode,
     },
     itemDetailsWidth: {
-      default: 600,
+      default: 1000,
     },
   },
   computed: {
