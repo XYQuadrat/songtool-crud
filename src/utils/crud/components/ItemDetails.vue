@@ -2,8 +2,6 @@
   <v-dialog
     v-model="details.show"
     :max-width="width"
-    persistent
-    no-click-animation
   >
     <v-card>
       <slot
