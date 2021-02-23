@@ -12,7 +12,7 @@
       >
         <v-card-title
           class="headline"
-        >Filtern</v-card-title>
+        >SongTool - Filtern</v-card-title>
       </slot>
       <v-form>
         <v-card-text style="padding:10px 25px 15px !important;" class="details-list">

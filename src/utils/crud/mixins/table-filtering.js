@@ -40,9 +40,8 @@ export default {
       if (this.search !== '') {
         const phrases = this.search.toLowerCase().split(' ')
         items = items.filter((item) => {
-          let found = true
           for (let i = 0; i < phrases.length; i++) {
-            found = false
+            let found = false
             for (const key in item) {
               let field = item[key]
               if (
@@ -52,7 +51,7 @@ export default {
               ) {
                 field = field.toString().toLowerCase()
                 if (field.includes(phrases[i])) {
-                  return true
+                  found = true
                 }
               } else if (
                 field instanceof Array ||
@@ -60,13 +59,15 @@ export default {
               ) {
                 field = field.join(' ').toLowerCase()
                 if (field.includes(phrases[i])) {
-                  return true
+                  found = true
                 }
               }
             }
-            if (!found) break
+            if (!found) {
+              return false
+            }
           }
-          return found
+          return true
         })
       }
 
