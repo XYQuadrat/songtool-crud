@@ -6,6 +6,7 @@
     :disabled="field.disabled"
     hide-details
     @blur="onBlur()"
+    no-resize
   />
 </template>
 <script>
@@ -48,6 +49,6 @@ export default {
 
 <style>
 textarea {
-  height: 49.1vh;
+  height: 65vh;
 }
 </style>

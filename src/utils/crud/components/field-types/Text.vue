@@ -2,7 +2,7 @@
   <v-text-field
     v-model="text"
     :type="['number', 'decimal'].includes(fieldType) ? 'number' : 'text'"
-    :label="field.text"
+    :label="field.text === 'Nr. im RG' ? 'Nummer im Reformierten Gesangsbuch' : field.text"
     :disabled="field.disabled"
     :rules="rules"
     :step="fieldType == 'decimal' ? 0.01 : 1"
