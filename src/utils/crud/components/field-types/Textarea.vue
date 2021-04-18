@@ -5,8 +5,8 @@
     :label="field.text"
     :disabled="field.disabled"
     hide-details
-    @blur="onBlur()"
     no-resize
+    @blur="onBlur()"
   />
 </template>
 <script>
@@ -31,17 +31,17 @@ export default {
       text: undefined,
     }
   },
-  methods: {
-    onBlur () {
-      this.$emit('input', this.text)
-    },
-  },
   watch: {
     value: {
       immediate: true,
       handler (val) {
         this.text = val
       },
+    },
+  },
+  methods: {
+    onBlur () {
+      this.$emit('input', this.text)
     },
   },
 }

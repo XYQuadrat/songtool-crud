@@ -8,14 +8,14 @@
       color="#FF8A65aa"
       icon="edit"
       @clicked="edit(item.meta.id)"
-    ></crud-button>
+    />
     <!-- hard delete -->
     <crud-button
       small
       color="black"
       icon="delete"
       @clicked="destroy(item.meta.id)"
-    ></crud-button>
+    />
   </span>
 </template>
 
@@ -27,8 +27,8 @@ export default {
     CrudButton,
   },
   props: {
-    item: {},
-    editButton: {},
+    item: [Object],
+    editButton: Boolean,
   },
   methods: {
     edit (id) { this.$emit('edit', id) },

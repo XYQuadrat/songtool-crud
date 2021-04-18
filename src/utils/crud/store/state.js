@@ -24,11 +24,9 @@ const state = {
     show: false,
   },
   columnFilters: [],
-  // isItemsViewRefreshed
   isItemsViewRefreshed: false,
   item: {},
   itemIdColumn: '',
-  // api
   apiUrl: api.url,
   apiPath: api.path,
 }

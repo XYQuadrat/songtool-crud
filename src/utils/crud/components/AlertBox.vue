@@ -1,5 +1,8 @@
 <template>
-  <v-layout justify-center align-center>
+  <v-layout
+    justify-center
+    align-center
+  >
     <v-alert
       v-model="alert.show"
       class="alert"
@@ -8,7 +11,7 @@
       transition="scale-transition"
       dismissible
     >
-      <span v-html="alert.text"></span>
+      <span>{{ alert.text }}</span>
     </v-alert>
   </v-layout>
 </template>
@@ -18,7 +21,7 @@ import {
 } from 'vuex'
 
 export default {
-  name: 'alert',
+  name: 'Alert',
   computed: {
     ...mapState(['alert']),
   },

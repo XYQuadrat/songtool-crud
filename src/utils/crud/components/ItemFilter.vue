@@ -10,21 +10,42 @@
       >
         <v-card-title
           class="headline"
-        >SongTool - Filtern</v-card-title>
+        >
+          SongTool - Filtern
+        </v-card-title>
       </slot>
       <v-form>
-        <v-card-text style="padding:10px 25px 15px !important;" class="details-list">
+        <v-card-text
+          style="padding:10px 25px 15px !important;"
+          class="details-list"
+        >
+          <!-- Search in table -->
+          <span
+            class="crud-controls__search"
+          >
+            <v-text-field
+              v-model="search"
+              :label="'Suche: Volltext, Autor, …'"
+              class="crud-controls__search-input"
+              append-icon="search"
+              single-line
+              hide-details
+              @change="updateSearch"
+            />
+          </span>
           <slot name="over-fields" />
           <div
             v-for="(field, i) in fields"
             :key="i"
           >
-            <v-layout row wrap>
+            <v-layout
+              row
+              wrap
+            >
               <v-flex :class="'sm12'">
                 <item-details-field
                   :field="field"
                   :field-value="field.value"
-                  :reload="reload"
                   @valueChanged="valueChanged"
                 >
                   <template
@@ -32,7 +53,6 @@
                       value,
                       fieldType,
                       field,
-                      reload,
                       changeValue,
                     }"
                   >
@@ -41,7 +61,6 @@
                       :value="value"
                       :field-type="fieldType"
                       :field="field"
-                      :reload="reload"
                       :change-value="changeValue"
                     />
                   </template>
@@ -52,13 +71,27 @@
           <slot name="under-fields" />
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="black" text @click.native="close()">{{ 'Schliessen' }}</v-btn>
+          <v-spacer />
+          <crud-button
+            large
+            color="grey"
+            icon="delete_sweep"
+            @clicked="clearFilters()"
+          />
+          <v-btn
+            color="black"
+            text
+            @click.native="close()"
+          >
+            {{ 'Schliessen' }}
+          </v-btn>
           <v-btn
             color="green"
             text
             @click="applyFilter()"
-          >{{ 'Filtern' }}</v-btn>
+          >
+            {{ 'Filtern' }}
+          </v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
@@ -66,6 +99,7 @@
 </template>
 <script>
 
+import CrudButton from './Button.vue'
 import ItemDetailsField from './ItemDetailsField.vue'
 import {
   mapState,
@@ -74,27 +108,18 @@ import {
 
 export default {
   components: {
+    CrudButton,
     ItemDetailsField,
   },
-  props: [
-    'title',
-    'width',
-  ],
+  props: {
+    title: String,
+    width: Number,
+  },
   data () {
     return {
-      reload: false,
       fields: [],
+      search: '',
     }
-  },
-  watch: {
-    filterShow: function (val) {
-      if (val) {
-        this.setFields()
-      }
-    },
-  },
-  mounted () {
-    this.setFields()
   },
   computed: {
     ...mapState('crud', ['filter']),
@@ -115,9 +140,23 @@ export default {
       return this.filter.show
     },
   },
+  watch: {
+    filterShow: function (val) {
+      if (val) {
+        this.setFields()
+      }
+    },
+  },
+  mounted () {
+    // this.resetItem()
+    this.setFields()
+  },
   methods: {
     ...mapState('crud', ['columnFilters']),
-    ...mapMutations('crud', ['setFilters']),
+    ...mapMutations('crud', [
+      'setFilters',
+      'resetFilters',
+    ]),
     setFields () {
       const result = Object.values(this.$store.state.crud.columnFilters).map((field) => {
         const rField = field
@@ -149,13 +188,30 @@ export default {
       this.$emit('updateFilters')
       this.close()
     },
+    updateSearch () {
+      this.$emit('updateSearch', this.search)
+    },
+    clearFilters () {
+      this.search = ''
+      this.updateSearch()
+      this.resetFilters()
+      this.$emit('clearFilters')
+    },
   },
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .details-list {
   max-height: calc(100vh - 200px);
   overflow-y: auto;
+}
+.crud-controls {
+  &__search {
+    margin: 0px;
+  }
+  &__search-input {
+    margin-top: -8px;
+  }
 }
 </style>

@@ -3,7 +3,6 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import './plugins/http'
-import './plugins/ie'
 import App from './App.vue'
 
 Vue.http.interceptors.push((request, next) => {

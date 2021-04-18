@@ -1,6 +1,8 @@
 <template>
   <div style="margin:30px 0px;">
-    <h1 style="text-align:center">SongTool</h1>
+    <h1 style="text-align:center">
+      SongTool
+    </h1>
     <crud
       :prefix="prefix"
       :path="path"
@@ -9,8 +11,8 @@
       :details-title="detailsTitle"
       :create-mode="createMode"
       :edit-button="editButton"
-    ></crud>
-    <alert-box></alert-box>
+    />
+    <alert-box />
   </div>
 </template>
 
@@ -19,6 +21,10 @@ import Crud from '@/utils/crud/components/Crud.vue'
 import AlertBox from '@/utils/crud/components/AlertBox.vue'
 
 export default {
+  components: {
+    Crud,
+    AlertBox,
+  },
   data () {
     return {
       prefix: 'crud',
@@ -28,9 +34,6 @@ export default {
       createMode: true,
       editButton: true,
     }
-  },
-  created () {
-    this.detailsTitle = 'Lied'
   },
   computed: {
     fieldsInfo () {
@@ -92,6 +95,7 @@ export default {
               { name: 'Kanon', label: 'Kanon' },
               { name: 'Leitvers', label: 'Leitvers' },
               { name: 'Liedruf', label: 'Liedruf' },
+              { name: 'Mehrsprachig', label: 'Mehrsprachige Gesänge' },
               { name: 'Taizé', label: 'Taizé' },
             ],
           },
@@ -225,9 +229,8 @@ export default {
       ]
     },
   },
-  components: {
-    Crud,
-    AlertBox,
+  created () {
+    this.detailsTitle = 'Lied'
   },
 }
 </script>

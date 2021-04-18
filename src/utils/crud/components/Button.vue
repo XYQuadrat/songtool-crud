@@ -1,6 +1,5 @@
 <template>
   <v-btn
-    :class="noMargin ? '' : 'mr-1'"
     :icon="!dark"
     :fab="dark"
     :dark="dark"
@@ -12,10 +11,13 @@
     :loading="loading"
     @click="emitClick()"
   >
+    {{ text }}
     <v-icon
-      :dark="dark"
       v-if="icon"
-    >{{ icon }}</v-icon>
+      :dark="dark"
+    >
+      {{ icon }}
+    </v-icon>
   </v-btn>
 </template>
 
@@ -49,6 +51,10 @@ export default {
     icon: {
       type: String,
     },
+    text: {
+      type: String,
+      default: '',
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -58,10 +64,6 @@ export default {
       default: false,
     },
     active: {
-      type: Boolean,
-      default: false,
-    },
-    noMargin: {
       type: Boolean,
       default: false,
     },

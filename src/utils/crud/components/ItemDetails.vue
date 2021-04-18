@@ -10,23 +10,30 @@
       >
         <v-card-title
           class="headline"
-        >Details</v-card-title>
+        >
+          Details
+        </v-card-title>
       </slot>
       <v-form v-model="details.formValid">
         <v-layout>
           <v-flex>
-            <v-card-text style="padding:10px 25px 15px !important;" class="details-list">
+            <v-card-text
+              style="padding:10px 25px 15px !important;"
+              class="details-list"
+            >
               <slot name="over-fields" />
               <div
                 v-for="(field, i) in fields.slice(0,-1)"
                 :key="i"
               >
-                <v-layout row wrap>
+                <v-layout
+                  row
+                  wrap
+                >
                   <v-flex :class="'sm12'">
                     <item-details-field
                       :field="field"
                       :field-value="field.value"
-                      :reload="reload"
                       @valueChanged="valueChanged"
                     >
                       <template
@@ -34,7 +41,6 @@
                           value,
                           fieldType,
                           field,
-                          reload,
                           rules,
                           changeValue,
                         }"
@@ -44,7 +50,6 @@
                           :value="value"
                           :field-type="fieldType"
                           :field="field"
-                          :reload="reload"
                           :rules="rules"
                           :change-value="changeValue"
                         />
@@ -56,58 +61,65 @@
             </v-card-text>
           </v-flex>
           <v-flex md8>
-          <div
-            v-for="(field, i) in fields.slice(-1)"
-            :key="i"
-          >
-            <item-details-field
-                  :field="field"
-                  :field-value="field.value"
-                  :reload="reload"
-                  @valueChanged="valueChanged"
+            <div
+              v-for="(field, i) in fields.slice(-1)"
+              :key="i"
+            >
+              <item-details-field
+                :field="field"
+                :field-value="field.value"
+                @valueChanged="valueChanged"
+              >
+                <template
+                  #default="{
+                    value,
+                    fieldType,
+                    field,
+                    rules,
+                    changeValue,
+                  }"
                 >
-                  <template
-                    #default="{
-                      value,
-                      fieldType,
-                      field,
-                      reload,
-                      rules,
-                      changeValue,
-                    }"
-                  >
-                    <slot
-                      :name="`field:${field.name}`"
-                      :value="value"
-                      :field-type="fieldType"
-                      :field="field"
-                      :reload="reload"
-                      :rules="rules"
-                      :change-value="changeValue"
-                    />
-                  </template>
-                </item-details-field>
-          </div>
+                  <slot
+                    :name="`field:${field.name}`"
+                    :value="value"
+                    :field-type="fieldType"
+                    :field="field"
+                    :rules="rules"
+                    :change-value="changeValue"
+                  />
+                </template>
+              </item-details-field>
+            </div>
           </v-flex>
         </v-layout>
-          <slot name="under-fields" />
+        <slot name="under-fields" />
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="black" text @click.native="close()">{{ 'Schliessen' }}</v-btn>
+          <v-spacer />
           <v-btn
-            :disabled="!details.formValid"
+            color="black"
+            text
+            @click.native="close()"
+          >
+            {{ 'Schliessen' }}
+          </v-btn>
+          <v-btn
             v-if="details.action == 'create'"
+            :disabled="!details.formValid"
             color="green"
             text
             @click="store()"
-          >{{ 'Erstellen' }}</v-btn>
+          >
+            {{ 'Erstellen' }}
+          </v-btn>
           <v-btn
-            :disabled="!details.formValid"
             v-else-if="details.action == 'edit'"
+            :disabled="!details.formValid"
             color="orange"
             text
             @click="update()"
-          >{{ 'Aktualisieren' }}</v-btn>
+          >
+            {{ 'Aktualisieren' }}
+          </v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
@@ -125,33 +137,15 @@ export default {
   components: {
     ItemDetailsField,
   },
-  props: [
-    'title',
-    'detailsFields',
-    'width',
-  ],
+  props: {
+    title: String,
+    detailsFields: Array,
+    width: Number,
+  },
   data () {
     return {
-      reload: false,
       fields: [],
     }
-  },
-  watch: {
-    detailsShow: function (val) {
-      if (val) {
-        this.setFields()
-        if (this.details.action === 'edit') {
-          this.reload = true
-          setTimeout(() => {
-            this.reload = false
-          }, 100)
-        }
-      }
-    },
-  },
-  mounted () {
-    this.resetItem()
-    this.setFields()
   },
   computed: {
     ...mapState('crud', [
@@ -175,6 +169,17 @@ export default {
     detailsShow () {
       return this.details.show
     },
+  },
+  watch: {
+    detailsShow: function (val) {
+      if (val) {
+        this.setFields()
+      }
+    },
+  },
+  mounted () {
+    this.resetItem()
+    this.setFields()
   },
   methods: {
     ...mapActions('crud', [

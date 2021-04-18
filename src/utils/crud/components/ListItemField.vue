@@ -1,15 +1,12 @@
 <template>
-    <span>
-      {{ value | cropped }}
-    </span>
+  <span>
+    {{ value | cropped }}
+  </span>
 </template>
 
 <script>
 
 export default {
-  props: {
-    value: {},
-  },
   filters: {
     cropped (value) {
       const maxLength = 25
@@ -23,6 +20,15 @@ export default {
       } else {
         return value
       }
+    },
+  },
+  props: {
+    value: {
+      type: [
+        String,
+        Array,
+        Number,
+      ],
     },
   },
 }

@@ -2,13 +2,13 @@
   <div style="position:relative;">
     <div>
       <crud-table
+        ref="crudtable"
         :meta="meta"
         :edit-button="editButton"
         :table-fields="tableFields"
         :details-fields="detailsFields"
         :primary-key="primaryKey"
         :create-mode="createMode"
-        ref="crudtable"
       >
         <!-- slots for fields -->
         <template
@@ -37,7 +37,7 @@
 
         <!-- slot over fields -->
         <template #over-fields>
-          <slot name="item-details-over-fields"/>
+          <slot name="item-details-over-fields" />
         </template>
 
         <!-- slots for fields -->
@@ -47,7 +47,6 @@
             value,
             fieldType,
             field,
-            reload,
             rules,
             changeValue,
           }"
@@ -57,7 +56,6 @@
             :value="value"
             :field-type="fieldType"
             :field="field"
-            :reload="reload"
             :rules="rules"
             :change-value="changeValue"
           />
@@ -65,15 +63,15 @@
 
         <!-- slot under fields -->
         <template #under-fields>
-          <slot name="item-details-under-fields"/>
+          <slot name="item-details-under-fields" />
         </template>
-
       </item-details>
       <item-filter
         :title="detailsTitle"
         :width="itemDetailsWidth * 0.6"
-        @updateFilters="updateFilters()">
-      </item-filter>
+        @updateFilters="updateFilters()"
+        @updateSearch="updateSearch"
+      />
     </div>
     <div class="details-loader-container">
       <v-layout
@@ -87,7 +85,7 @@
           :size="100"
           :width="3"
           color="primary"
-        ></v-progress-circular>
+        />
       </v-layout>
     </div>
   </div>
@@ -144,6 +142,7 @@ export default {
       default: crud.createMode === undefined ? true : crud.createMode,
     },
     itemDetailsWidth: {
+      type: Number,
       default: 1000,
     },
   },
@@ -159,6 +158,12 @@ export default {
       return this.fieldsInfo.filter(field => field.details !== false && field.type !== 'divider')
     },
   },
+  created () {
+    this.setPrefix(this.prefix)
+    this.setPath(this.path)
+    this.setPaths(this.paths)
+    this.setPage(this.pageTitle)
+  },
   methods: {
     ...mapMutations('crud', [
       'setPrefix',
@@ -170,12 +175,9 @@ export default {
     updateFilters (event) {
       this.$refs.crudtable.updateColumnFilters()
     },
-  },
-  created () {
-    this.setPrefix(this.prefix)
-    this.setPath(this.path)
-    this.setPaths(this.paths)
-    this.setPage(this.pageTitle)
+    updateSearch (search) {
+      this.$refs.crudtable.updateSearch(search)
+    },
   },
 }
 

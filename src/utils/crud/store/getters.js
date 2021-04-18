@@ -16,8 +16,8 @@ const getters = {
         obj,
         fields,
         meta,
-        primaryKey
-      )
+        primaryKey,
+      ),
     )
     return result
   },

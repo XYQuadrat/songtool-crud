@@ -92,6 +92,9 @@ const mutations = {
       }
     }
   },
+  setSearch (state, searchstring) {
+    state.search = searchstring
+  },
 }
 
 export default mutations

@@ -1,6 +1,9 @@
 <template>
-  <v-app app id="app">
-    <router-view></router-view>
+  <v-app
+    id="app"
+    app
+  >
+    <router-view />
   </v-app>
 </template>
 
@@ -8,6 +11,6 @@
 export default {}
 </script>
 
-<style lang="stylus">
-  @import "./assets/stylus/main.styl";
+<style lang="sass">
+  @import "./assets/sass/main.css"
 </style>

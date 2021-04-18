@@ -4,16 +4,14 @@
       :value="value"
       :field-type="fieldType"
       :field="field"
-      :reload="reload"
       :rules="fieldRules(field)"
       :change-value="changeValue"
     >
       <component
-        v-model="value"
         :is="fieldComponent"
+        v-model="value"
         :field-type="fieldType"
         :field="field"
-        :reload="reload"
         :rules="fieldRules(field)"
         :class="{'field--limited-width': true}"
       />
@@ -24,11 +22,14 @@
 
 export default {
   name: 'ItemDetailsField',
-  props: [
-    'field',
-    'fieldValue',
-    'reload',
-  ],
+  props: {
+    field: Object,
+    fieldValue: [
+      String,
+      Number,
+      Array,
+    ],
+  },
   data () {
     return {
       value: null,
@@ -67,20 +68,6 @@ export default {
       }
     },
   },
-  methods: {
-    fieldRules (field) {
-      const rules = []
-      const required = field.required !== undefined ? field.required : false
-      if (required) {
-        rules.push(this.rules.required)
-      }
-      return rules
-    },
-    changeValue (forcedValue) {
-      if (forcedValue) this.value = forcedValue
-      this.$emit('valueChanged', this.value, this.field.column)
-    },
-  },
   watch: {
     fieldValue: {
       immediate: true,
@@ -96,6 +83,20 @@ export default {
           this.changeValue()
         }
       },
+    },
+  },
+  methods: {
+    fieldRules (field) {
+      const rules = []
+      const required = field.required !== undefined ? field.required : false
+      if (required) {
+        rules.push(this.rules.required)
+      }
+      return rules
+    },
+    changeValue (forcedValue) {
+      if (forcedValue) this.value = forcedValue
+      this.$emit('valueChanged', this.value, this.field.column)
     },
   },
 }

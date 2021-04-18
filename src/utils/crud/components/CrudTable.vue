@@ -5,10 +5,8 @@
       @create="create"
       @filter="filter"
       @refreshItemsView="refreshItemsView"
-      @updateSearch="updateSearch"
       @clearFilters="clearFilters"
-    >
-    </controls>
+    />
     <!-- Table -->
     <v-data-table
       :options.sync="pagination"
@@ -20,20 +18,20 @@
       :footer-props="footerProps"
       :items-per-page="100"
       :loading="loading"
-      @click:row="rowClicked"
       sort-by="songnumber"
       light
       dense
+      @click:row="rowClicked"
     >
       <template
         v-for="(header, i) in headers"
-        v-slot:[`item.${header.value}`]="{ item }"
+        #[`item.${header.value}`]="{ item }"
       >
         <span :key="i">
           <list-item-actions
             v-if="header.value==='actions'"
             :item="item"
-            :edit-button='editButton'
+            :edit-button="editButton"
             @edit="edit"
             @destroy="destroy"
           />
@@ -50,14 +48,17 @@
           </span>
         </span>
       </template>
-      <template slot="footer.page-text" slot-scope="{ pageStart, pageStop, itemsLength }">
+      <template
+        slot="footer.page-text"
+        slot-scope="{ pageStart, pageStop, itemsLength }"
+      >
         <table-footer
-          @setPage="setPage"
           :pagination="pagination"
           :page-start="pageStart"
           :page-stop="pageStop"
           :items-length="itemsLength"
-        ></table-footer>
+          @setPage="setPage"
+        />
       </template>
     </v-data-table>
   </v-card>
@@ -81,6 +82,9 @@ import Controls from './Controls.vue'
 
 export default {
   name: 'CrudTable',
+  components: {
+    Controls,
+  },
   mixins: [
     CrudInstanceMixin,
     ControlsHandlerMixin,
@@ -89,9 +93,6 @@ export default {
     FilteringMixin,
     HelperMixin,
   ],
-  components: {
-    Controls,
-  },
   data () {
     return {}
   },
@@ -104,6 +105,17 @@ export default {
       return this.filteredItems.length
     },
   },
+  watch: {
+    isItemsViewRefreshed (val) {
+      if (val) {
+        this.getItems()
+      }
+    },
+  },
+  created () {
+    this.resetItems()
+    this.getItems()
+  },
   methods: {
     ...mapActions('crud', ['getItems']),
     moveDetailsItem (page, index) {
@@ -115,17 +127,6 @@ export default {
     },
     rowClicked (item, value) {
       this.edit(item.meta.id)
-    },
-  },
-  created () {
-    this.resetItems()
-    this.getItems()
-  },
-  watch: {
-    isItemsViewRefreshed (val) {
-      if (val) {
-        this.getItems()
-      }
     },
   },
 }

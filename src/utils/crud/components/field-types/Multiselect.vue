@@ -19,7 +19,7 @@
   >
     <template
       v-if="listRefreshable"
-      v-slot:append-outer
+      #append-outer
     >
       <v-icon
         color="blue"
@@ -38,7 +38,9 @@ import Vue from 'vue'
 export default {
   name: 'MultiselectField',
   props: {
-    value: {},
+    value: {
+      type: [ Array, String ],
+    },
     rules: {
       type: Array,
       default: () => [],
@@ -59,6 +61,38 @@ export default {
     listRefreshable () {
       return !this.field.async && this.field.url !== undefined
     },
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler (val) {
+        this.selection = val
+      },
+    },
+    search: {
+      handler (val) {
+        setTimeout(() => {
+          if (this.field.async && this.searchActive) {
+            if (this.search === val) {
+              const url = `${this.field.url}/phrase/${val}`
+              this.refreshList(url)
+            }
+          }
+        }, 500)
+      },
+    },
+  },
+  mounted () {
+    if (!this.field.url) {
+      this.items = this.field.list.data
+    } else {
+      this.items = []
+      if (this.field.async) {
+        this.loading = false
+      } else {
+        this.refreshList(this.field.url)
+      }
+    }
   },
   methods: {
     onChange () {
@@ -96,38 +130,6 @@ export default {
         this.loading = false
         this.searchActive = true
       })
-    },
-  },
-  mounted () {
-    if (!this.field.url) {
-      this.items = this.field.list.data
-    } else {
-      this.items = []
-      if (this.field.async) {
-        this.loading = false
-      } else {
-        this.refreshList(this.field.url)
-      }
-    }
-  },
-  watch: {
-    value: {
-      immediate: true,
-      handler (val) {
-        this.selection = val
-      },
-    },
-    search: {
-      handler (val) {
-        setTimeout(() => {
-          if (this.field.async && this.searchActive) {
-            if (this.search === val) {
-              const url = `${this.field.url}/phrase/${val}`
-              this.refreshList(url)
-            }
-          }
-        }, 500)
-      },
     },
   },
 }

@@ -9,66 +9,45 @@
       justify-space-between
     "
   >
-
     <!-- left side -->
     <div>
-
       <!-- dialog for creating item -->
       <crud-button
         v-if="createMode"
         x-large
         color="light-blue lighten-2"
-        @clicked="create()"
         icon="add"
+        @clicked="create()"
       />
     </div>
 
     <!-- center side -->
     <div>
-
       <!-- Search by fields -->
       <crud-button
         x-large
         color="blue"
-        @clicked="filter()"
         icon="filter_list_alt"
+        text="Filtern"
+        @clicked="filter()"
       />
 
-      <!-- Search in table -->
-      <span
-        class="crud-controls__search"
-      >
-        <v-text-field
-          v-model="search"
-          :label="'Suche: Volltext, Autor, …'"
-          class="crud-controls__search-input"
-          append-icon="search"
-          single-line
-          hide-details
-          @input="updateSearch"
-        ></v-text-field>
-      </span>
-
       <!-- clear filters -->
-      <crud-button
+      <!-- <crud-button
         large
         color="grey"
         @clicked="clearFilters()"
         icon="delete_sweep"
-      />
+      /> -->
     </div>
 
     <!-- right side -->
-    <div>
-
-    </div>
+    <div />
   </div>
-
 </template>
 
 <script>
 import CrudButton from './Button.vue'
-import _ from 'lodash'
 import {
   mapMutations,
 } from 'vuex'
@@ -78,11 +57,12 @@ export default {
   components: {
     CrudButton,
   },
-  props: ['createMode'],
-  data () {
-    return {
-      search: '',
-    }
+  props: {
+    createMode: Boolean,
+  },
+  created () {
+    this.search = ''
+    this.filter()
   },
   methods: {
     ...mapMutations('crud', ['resetFilters']),
@@ -95,9 +75,9 @@ export default {
     refreshItemsView () {
       this.$emit('refreshItemsView')
     },
-    updateSearch: _.debounce(function () {
+    updateSearch () {
       this.$emit('updateSearch', this.search)
-    }, 250),
+    },
     updateColumnFilters (event) {
       this.$emit('updateColumnFilters')
     },
@@ -108,24 +88,5 @@ export default {
       this.$emit('clearFilters')
     },
   },
-  created () {
-    this.search = ''
-    this.filter()
-  },
 }
 </script>
-<style lang="scss" scoped>
-.crud-controls {
-  &__search {
-    margin: 0 15px;
-    display: inline-block;
-    width: 120px;
-    @media (min-width: 500px) {
-      width: 250px;
-    }
-  }
-  &__search-input {
-    margin-top: -8px;
-  }
-}
-</style>
