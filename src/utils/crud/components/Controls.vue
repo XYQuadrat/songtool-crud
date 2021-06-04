@@ -31,14 +31,6 @@
         text="Filtern"
         @clicked="filter()"
       />
-
-      <!-- clear filters -->
-      <!-- <crud-button
-        large
-        color="grey"
-        @clicked="clearFilters()"
-        icon="delete_sweep"
-      /> -->
     </div>
 
     <!-- right side -->
