@@ -14,19 +14,7 @@
     item-disabled="itemDisabled"
     hide-details
     @change="onChange()"
-  >
-    <template
-      v-if="listRefreshable"
-      #append-outer
-    >
-      <v-icon
-        color="blue"
-        @click="refreshList(field.url)"
-      >
-        refresh
-      </v-icon>
-    </template>
-  </v-autocomplete>
+  />
 </template>
 
 <script>
@@ -55,11 +43,6 @@ export default {
     loading: false,
     searchActive: true,
   }),
-  computed: {
-    listRefreshable () {
-      return !this.field.async && this.field.url !== undefined
-    },
-  },
   watch: {
     value: {
       immediate: true,

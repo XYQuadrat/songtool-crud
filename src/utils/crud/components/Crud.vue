@@ -35,18 +35,11 @@
           />
         </template>
 
-        <!-- slot over fields -->
-        <template #over-fields>
-          <slot name="item-details-over-fields" />
-        </template>
-
-        <!-- slots for fields -->
         <template
           v-for="field in detailsFields"
           #[`field:${field.name}`]="{
             value,
             fieldType,
-            field,
             rules,
             changeValue,
           }"
@@ -60,11 +53,6 @@
             :change-value="changeValue"
           />
         </template>
-
-        <!-- slot under fields -->
-        <template #under-fields>
-          <slot name="item-details-under-fields" />
-        </template>
       </item-details>
       <item-filter
         :title="detailsTitle"
@@ -72,21 +60,6 @@
         @updateFilters="updateFilters()"
         @updateSearch="updateSearch"
       />
-    </div>
-    <div class="details-loader-container">
-      <v-layout
-        v-if="detailsLoading"
-        class="details-loader"
-        justify-center
-        align-center
-      >
-        <v-progress-circular
-          indeterminate
-          :size="100"
-          :width="3"
-          color="primary"
-        />
-      </v-layout>
     </div>
   </div>
 </template>
@@ -182,19 +155,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.details-loader-container {
-  position: absolute;
-  top: 200px;
-  text-align: center;
-  width: 100%;
-}
-.details-loader {
-  height: 100px !important;
-  width: 100px;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 100%;
-  display: inline-block;
-}
-</style>

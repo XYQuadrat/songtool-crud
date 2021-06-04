@@ -37,9 +37,6 @@ const mutations = {
     state.moveItemDirection = direction
   },
   // details item
-  setDetailsLoader (state, bool) {
-    state.detailsLoading = bool
-  },
   setItem (state, data) {
     state.details.item = data
   },

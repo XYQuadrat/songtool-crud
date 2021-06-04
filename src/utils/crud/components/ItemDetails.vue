@@ -21,7 +21,6 @@
               style="padding:10px 25px 15px !important;"
               class="details-list"
             >
-              <slot name="over-fields" />
               <div
                 v-for="(field, i) in fields.slice(0,-1)"
                 :key="i"
@@ -40,7 +39,6 @@
                         #default="{
                           value,
                           fieldType,
-                          field,
                           rules,
                           changeValue,
                         }"
@@ -74,7 +72,6 @@
                   #default="{
                     value,
                     fieldType,
-                    field,
                     rules,
                     changeValue,
                   }"
@@ -92,7 +89,6 @@
             </div>
           </v-flex>
         </v-layout>
-        <slot name="under-fields" />
         <v-card-actions>
           <v-spacer />
           <v-btn

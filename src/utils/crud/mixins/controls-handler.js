@@ -11,7 +11,7 @@ export default {
   methods: {
     ...mapMutations('crud', ['initializeFilters']),
     updateColumnFilters () {
-      //this.startSearching()
+      // this.startSearching()
     },
     updateSearch (search) {
       this.search = search

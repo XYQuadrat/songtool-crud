@@ -18,11 +18,9 @@ const actions = {
   // item details
   getItem ({ commit, getters, dispatch }, [id]) {
     return new Promise((resolve, reject) => {
-      commit('setDetailsLoader', true)
       Vue.http.get(`${getters.path('sh')}/${id}`)
         .then((response) => {
           commit('setItem', response.body)
-          commit('setDetailsLoader', false)
           resolve()
         }, (error) => {
           dispatch('openAlertBox', [

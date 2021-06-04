@@ -5,14 +5,6 @@ import vuetify from './plugins/vuetify'
 import './plugins/http'
 import App from './App.vue'
 
-Vue.http.interceptors.push((request, next) => {
-  next(response => {
-    if (response.status === 400 || response.status === 401 || response.status === 403) {
-      router.push({ path: '/login' })
-    }
-  })
-})
-
 new Vue({
   router,
   store,

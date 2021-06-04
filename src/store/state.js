@@ -2,11 +2,11 @@ const defaults = {
   title: 'Songtool',
   locales: [
     {
-      name: 'en',
-      text: 'English',
+      name: 'de',
+      text: 'Deutsch',
     },
   ],
-  defaultLocale: 'en',
+  defaultLocale: 'de',
   iconfont: 'md',
   primaryTheme: 'dark',
   secondaryTheme: 'dark',

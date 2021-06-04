@@ -33,7 +33,6 @@
               @change="updateSearch"
             />
           </span>
-          <slot name="over-fields" />
           <div
             v-for="(field, i) in fields"
             :key="i"
@@ -52,7 +51,6 @@
                     #default="{
                       value,
                       fieldType,
-                      field,
                       changeValue,
                     }"
                   >
@@ -68,7 +66,6 @@
               </v-flex>
             </v-layout>
           </div>
-          <slot name="under-fields" />
         </v-card-text>
         <v-card-actions>
           <v-spacer />
