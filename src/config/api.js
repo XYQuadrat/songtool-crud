@@ -1,5 +1,5 @@
 export default {
-  url: 'https://people.xyquadrat.ch',
+  url: 'http://songtool.gottesdienst-ref.ch/backend/public',
   path: {
     prefix: 'api',
   },
