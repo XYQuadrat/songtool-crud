@@ -15,10 +15,6 @@ const mutations = {
   // table items
   setItems (state, data) {
     state.items = data
-    state.loading = false
-  },
-  setLoadingStatus (state, val) {
-    state.loading = val
   },
   resetItems (state) {
     state.items = []
@@ -28,13 +24,6 @@ const mutations = {
   setCurrentItem (state, item) {
     state.currentItemId = item.id
     state.currentItemIndex = item.index
-  },
-  moveItem (state, [
-    direction,
-    run,
-  ]) {
-    state.moveItemRun = run
-    state.moveItemDirection = direction
   },
   // details item
   setItem (state, data) {

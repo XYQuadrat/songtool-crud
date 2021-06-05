@@ -3,7 +3,6 @@
     v-model="selection"
     :rules="rules"
     :items="items"
-    :loading="loading"
     :item-text="field.list.text"
     :item-value="field.list.value"
     :search-input.sync="search"
@@ -40,7 +39,6 @@ export default {
     items: [],
     search: '',
     oldSearch: '',
-    loading: false,
     searchActive: true,
   }),
   watch: {
@@ -69,7 +67,6 @@ export default {
     } else {
       this.items = []
       if (this.field.async) {
-        this.loading = false
       } else {
         this.refreshList(this.field.url)
       }
@@ -82,7 +79,6 @@ export default {
     refreshList (url) {
       this.searchActive = false
       let selectItems
-      this.loading = true
       const required = this.field.required !== undefined ? this.field.required : true
       Vue.http.get(url).then((response) => {
         const items = response.body
@@ -108,7 +104,6 @@ export default {
         } else {
           this.items = selectItems
         }
-        this.loading = false
         this.searchActive = true
       })
     },

@@ -120,10 +120,7 @@ export default {
     },
   },
   computed: {
-    ...mapState('crud', [
-      'detailsLoading',
-      'columnFilters',
-    ]),
+    ...mapState('crud', ['columnFilters']),
     tableFields () {
       return this.fieldsInfo.filter(field => field.table !== false && field.type !== 'divider')
     },

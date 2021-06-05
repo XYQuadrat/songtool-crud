@@ -17,7 +17,6 @@
       :no-data-text="'Keine Daten verfügbar'"
       :footer-props="footerProps"
       :items-per-page="100"
-      :loading="loading"
       sort-by="songnumber"
       light
       dense
@@ -97,10 +96,7 @@ export default {
     return {}
   },
   computed: {
-    ...mapState('crud', [
-      'loading',
-      'isItemsViewRefreshed',
-    ]),
+    ...mapState('crud', ['isItemsViewRefreshed']),
     totalItems () {
       return this.filteredItems.length
     },

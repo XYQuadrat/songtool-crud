@@ -3,11 +3,9 @@ import Vue from 'vue'
 const actions = {
   // table data
   getItems ({ commit, getters, dispatch }) {
-    commit('setLoadingStatus', true)
     Vue.http.get(getters.path('i'))
       .then((response) => {
         commit('setItems', response.body)
-        commit('setLoadingStatus', false)
       }, (error) => {
         dispatch('openAlertBox', [
           'alertError',

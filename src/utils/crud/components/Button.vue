@@ -8,7 +8,6 @@
     :large="large"
     :x-large="xLarge"
     :color="color"
-    :loading="loading"
     @click="emitClick()"
   >
     {{ text }}
@@ -56,10 +55,6 @@ export default {
       default: '',
     },
     disabled: {
-      type: Boolean,
-      default: false,
-    },
-    loading: {
       type: Boolean,
       default: false,
     },
